@@ -72,8 +72,8 @@
                     </div>
 
                     <!-- Προσωπικοί αριθμοί -->
-                    <div class="row">
-                        <div class="form-group col-md-6">
+                    <div class="row justify-content-center">
+                        <div class="form-group col-md-10 col-12">
                             <label class="form-label" for="afm">Α.Φ.Μ</label>
                             <input
                                     type="number"
@@ -83,7 +83,7 @@
                                     formControlName="afm"
                                     [imask] = "{mask: '000000000'}"
                                     minlength="9"
-                                    placeholder="_ _ _ _ _ _ _ _ _">
+                                    placeholder="12 ψηφία του ΑΦΜ">
 
                             <ng-container *ngIf="beneficiaryForm.get('afm').touched">
                                 <small class="text-danger" *ngIf = "beneficiaryForm.get('afm').value?.length < 9">
@@ -91,7 +91,7 @@
                                 </small>
                             </ng-container>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-10 col-12">
                             <label class="form-label" for="amka">Α.Μ.Κ.Α</label>
                             <input
                                     type="number"
@@ -101,7 +101,7 @@
                                     formControlName="amka"
                                     [imask] = "{mask: '00000000000'}"
                                     minlength="11"
-                                    placeholder="_ _ _ _ _ _ _ _ _ _ _">
+                                    placeholder="11 ψηφία του ΑΜΚΑ">
 
                             <ng-container *ngIf="beneficiaryForm.get('amka').touched">
                                 <small class="text-danger" *ngIf = "beneficiaryForm.get('amka').hasError('required')">
@@ -113,7 +113,7 @@
                                 </small>
                             </ng-container>
                         </div>
-                        <div class="col-md-4 col-12">
+                        <div class="col-md-10 col-12">
                             <div class="form-group">
                                 <label for="id-icon">Αριθμός Ταυτότητας/Διαβατηρίου</label>
                                 <div class="input-group input-group-merge">
@@ -153,8 +153,8 @@
                         <h5 class="mb-0">Προσωπικά Στοιχεία</h5>
                         <small class="text-muted">Τα προσωπικά σας στοιχεία.</small>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 col-12">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10 col-12">
                             <div class="form-group">
                                 <label for="first-name-icon">Ονομα</label>
                                 <div class="input-group input-group-merge">
@@ -176,7 +176,7 @@
                                 </ng-container>
                             </div>
                         </div>
-                        <div class="col-md-6 col-12">
+                        <div class="col-md-10 col-12">
                             <div class="form-group">
                                 <label for="last-name-icon">Επίθετο</label>
                                 <div class="input-group input-group-merge">
@@ -198,7 +198,7 @@
                                 </ng-container>
                             </div>
                         </div>
-                        <div class="col-md-2 col-12">
+                        <div class="col-md-5 col-12">
                             <div class="form-group">
                                 <label for="customSelect">Φύλο</label>
                                 <select class="custom-select" id="customSelect" formControlName="sex">
@@ -214,7 +214,7 @@
                                 </ng-container>
                             </div>
                         </div>
-                        <div class="col-md-2 col-12">
+                        <div class="col-md-5 col-12">
                             <div class="form-group">
                                 <label for="customSelect">Ετος γέννησης</label>
                                 <select class="custom-select" id="year" formControlName="birthyear">
@@ -228,7 +228,7 @@
                                 </ng-container>
                             </div>
                         </div>
-                        <div class="col-md-8 col-12">
+                        <div class="col-md-10 col-12">
                             <div class="form-group">
                                 <label for="nationality-icon">Εθνικότητα</label>
                                 <div class="input-group input-group-merge">
@@ -268,8 +268,8 @@
                         <h5 class="mb-0">Οικογενιακά Στοιχεία</h5>
                         <small class="text-muted">Στοιχεία σχετικά με την οικογένειά σας.</small>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 col-12">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10 col-12">
                             <div class="form-group">
                                 <label for="father-first-name-icon">Ονομα Πατέρα</label>
                                 <div class="input-group input-group-merge">
@@ -291,7 +291,7 @@
                                 </ng-container>
                             </div>
                         </div>
-                        <div class="col-md-6 col-12">
+                        <div class="col-md-10 col-12">
                             <div class="form-group">
                                 <label for="father-last-name-icon">Επίθετο Πατέρα</label>
                                 <div class="input-group input-group-merge">
@@ -313,7 +313,7 @@
                                 </ng-container>
                             </div>
                         </div>
-                        <div class="col-md-4 col-12">
+                        <div class="col-md-10 col-12">
                             <div class="form-group">
                                 <label for="mother-name-icon">Ονομα Μητέρας</label>
                                 <div class="input-group input-group-merge">
@@ -391,7 +391,7 @@
                                             minlength="10"
                                             [imask]="{mask: '0000000000'}"
                                             formControlName="phone1"
-                                            placeholder="_ _ _ _ _ _ _ _ _ _">
+                                            placeholder="Σταθερό ή Κινητό">
                                 </div>
                                 <ng-container *ngIf="beneficiaryForm.get('phone1').touched">
                                     <small class="text-danger" *ngIf = "beneficiaryForm.get('phone1').hasError('required')">
@@ -419,7 +419,7 @@
                                             formControlName="phone2"
                                             minlength="10"
                                             [imask]="{mask: '0000000000'}"
-                                            placeholder="_ _ _ _ _ _ _ _ _ _">
+                                            placeholder="Σταθερό ή Κινητό">
                                 </div>
                                 <ng-container *ngIf="beneficiaryForm.get('phone2').touched">
                                     <small class="text-danger" *ngIf = "beneficiaryForm.get('phone2').value?.length < 10 &&
@@ -430,15 +430,13 @@
                             </div>
                         </div>
                     </div>
-
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary btn-prev" (click)="wizardPrevious()" rippleEffect>
-                                <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
-                                <span class="align-middle d-sm-inline-block d-none">Previous</span>
-                            </button>
-                            <button class="btn btn-success btn-submit" rippleEffect (click)="onSubmit()">Submit</button>
-                        </div>
-
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-primary btn-prev" (click)="wizardPrevious()" rippleEffect>
+                            <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
+                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                        </button>
+                        <button class="btn btn-success btn-submit" rippleEffect (click)="onSubmit()">Submit</button>
+                    </div>
                 </div>
             </form>
         </div>
