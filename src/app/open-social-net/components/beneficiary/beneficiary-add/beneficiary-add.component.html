@@ -16,8 +16,6 @@
 <section class="vertical-wizard">
     <div id="stepper2" class="bs-stepper vertical vertical-wizard-example">
 
-
-
         <!-- Tabs -->
         <div class="bs-stepper-header" >
             <div class="step" data-target="#personal-numbers">
@@ -26,11 +24,10 @@
                     <span class="bs-stepper-label">
                         <span class="bs-stepper-title">Στοιχεία Ταυτοποίησης</span>
                         <span class="bs-stepper-subtitle">Οι προσωπικοί σας αριθμοί</span>
-                        <!--<br>
-                        <small class="text-danger" *ngIf="">Υπάρχουν λάθη στο πεδίο</small>-->
                     </span>
                 </button>
             </div>
+
             <div class="step" data-target="#personal-info">
                 <button type="button" class="step-trigger">
                     <span class="bs-stepper-box">2</span>
@@ -40,7 +37,8 @@
                     </span>
                 </button>
             </div>
-            <div class="step" data-target="#address-step-vertical">
+
+            <div class="step" data-target="#family-info">
                 <button type="button" class="step-trigger">
                     <span class="bs-stepper-box">3</span>
                     <span class="bs-stepper-label">
@@ -49,21 +47,23 @@
                     </span>
                 </button>
             </div>
-            <div class="step" data-target="#social-links-vertical">
+
+            <div class="step" data-target="#contact-info">
                 <button type="button" class="step-trigger">
                     <span class="bs-stepper-box">4</span>
                     <span class="bs-stepper-label">
-                        <span class="bs-stepper-title">Στοιχεία Κατοικίας</span>
-                        <span class="bs-stepper-subtitle">Τόπος κατοικίας</span>
+                        <span class="bs-stepper-title">Στοιχεία Επικοινωνίας</span>
+                        <span class="bs-stepper-subtitle">Τρόποι επικοινωνίας</span>
                     </span>
                 </button>
             </div>
-            <div class="step" data-target="#communication">
+
+            <div class="step" data-target="#address-info">
                 <button type="button" class="step-trigger">
                     <span class="bs-stepper-box">5</span>
                     <span class="bs-stepper-label">
-                        <span class="bs-stepper-title">Στοιχεία Επικοινωνίας</span>
-                        <span class="bs-stepper-subtitle">Τρόποι επικοινωνίας</span>
+                        <span class="bs-stepper-title">Στοιχεία Κατοικίας</span>
+                        <span class="bs-stepper-subtitle">Στοιχεία σχετικά με τον τόπο κατοικίας σας</span>
                     </span>
                 </button>
             </div>
@@ -72,8 +72,10 @@
 
 
         <!-- Πεδία -->
-        <div class="bs-stepper-content">
-            <form class="form form-vertical" [formGroup]="beneficiaryForm">
+        <div class="bs-stepper-content" >
+
+            <div class="form form-vertical" [formGroup]="addBeneficiaryForm">
+
                 <div id="personal-numbers" class="content">
                     <div class="content-header">
                         <h5 class="mb-0">Στοιχεία Ταυτοποίησης</h5>
@@ -81,8 +83,8 @@
                     </div>
 
                     <!-- Προσωπικοί αριθμοί -->
-                    <div class="row">
-                        <div class="form-group col-md-6">
+                    <div class="row justify-content-center">
+                        <div class="form-group col-md-10 col-12">
                             <label class="form-label" for="afm">Α.Φ.Μ</label>
                             <input
                                     type="number"
@@ -92,15 +94,15 @@
                                     formControlName="afm"
                                     [imask] = "{mask: '000000000'}"
                                     minlength="9"
-                                    placeholder="_ _ _ _ _ _ _ _ _">
+                                    placeholder="9 ψηφία του ΑΦΜ">
 
-                            <ng-container *ngIf="beneficiaryForm.get('afm').touched">
-                                <small class="text-danger" *ngIf = "beneficiaryForm.get('afm').value?.length < 9">
+                            <ng-container *ngIf="addBeneficiaryForm.get('afm')?.touched">
+                                <small class="text-danger" *ngIf = "addBeneficiaryForm.get('afm')?.value?.length < 9">
                                     O ΑΦΜ πρεπει να έχει 9 ψηφία
                                 </small>
                             </ng-container>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-10 col-12">
                             <label class="form-label" for="amka">Α.Μ.Κ.Α</label>
                             <input
                                     type="number"
@@ -110,19 +112,19 @@
                                     formControlName="amka"
                                     [imask] = "{mask: '00000000000'}"
                                     minlength="11"
-                                    placeholder="_ _ _ _ _ _ _ _ _ _ _">
+                                    placeholder="11 ψηφία του ΑΜΚΑ">
 
-                            <ng-container *ngIf="beneficiaryForm.get('amka').touched">
-                                <small class="text-danger" *ngIf = "beneficiaryForm.get('amka').hasError('required')">
+                            <ng-container *ngIf="addBeneficiaryForm.get('amka').touched">
+                                <small class="text-danger" *ngIf = "addBeneficiaryForm.get('amka').hasError('required')">
                                     O AMKA είναι απαραίτητος
                                 </small>
                                 <br>
-                                <small class="text-danger" *ngIf = "beneficiaryForm.get('amka').value?.length < 11">
+                                <small class="text-danger" *ngIf = "addBeneficiaryForm.get('amka')?.value?.length < 11">
                                     O AMKA πρεπει να έχει 11 ψηφία
                                 </small>
                             </ng-container>
                         </div>
-                        <div class="col-md-4 col-12">
+                        <div class="col-md-10 col-12">
                             <div class="form-group">
                                 <label for="id-icon">Αριθμός Ταυτότητας/Διαβατηρίου</label>
                                 <div class="input-group input-group-merge">
@@ -137,8 +139,8 @@
                                             placeholder="Ταυτότητα/Διαβατήριο"
                                             formControlName="adtorpassport">
                                 </div>
-                                <ng-container *ngIf="beneficiaryForm.get('adtorpassport').touched">
-                                    <small class="text-danger" *ngIf = "beneficiaryForm.get('adtorpassport').hasError('required')">
+                                <ng-container *ngIf="addBeneficiaryForm.get('adtorpassport').touched">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('adtorpassport').hasError('required')">
                                         O αριθμός χρειάζεται
                                     </small>
                                 </ng-container>
@@ -157,16 +159,13 @@
                     </div>
                 </div>
 
-
-
-
                 <div id="personal-info" class="content">
                     <div class="content-header">
                         <h5 class="mb-0">Προσωπικά Στοιχεία</h5>
                         <small class="text-muted">Τα προσωπικά σας στοιχεία.</small>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 col-12">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10 col-12">
                             <div class="form-group">
                                 <label for="first-name-icon">Ονομα</label>
                                 <div class="input-group input-group-merge">
@@ -181,12 +180,14 @@
                                             placeholder="Ονομα"
                                             formControlName="firstname">
                                 </div>
-                                <ng-container *ngIf="beneficiaryForm.get('firstname').touched">
-                                    <small class="text-danger" *ngIf = "beneficiaryForm.get('firstname').hasError('required')">Το όνομα χρειάζεται</small>
+                                <ng-container *ngIf="addBeneficiaryForm.get('firstname').touched">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('firstname').hasError('required')">
+                                        Το όνομα χρειάζεται
+                                    </small>
                                 </ng-container>
                             </div>
                         </div>
-                        <div class="col-md-6 col-12">
+                        <div class="col-md-10 col-12">
                             <div class="form-group">
                                 <label for="last-name-icon">Επίθετο</label>
                                 <div class="input-group input-group-merge">
@@ -201,38 +202,43 @@
                                             placeholder="Επίθετο"
                                             formControlName = "lastname">
                                 </div>
-                                <ng-container *ngIf="beneficiaryForm.get('lastname').touched">
-                                    <small class="text-danger" *ngIf = "beneficiaryForm.get('lastname').hasError('required')">Το επίθετο χρειάζεται</small>
+                                <ng-container *ngIf="addBeneficiaryForm.get('lastname').touched">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('lastname').hasError('required')">
+                                        Το επίθετο χρειάζεται
+                                    </small>
                                 </ng-container>
                             </div>
                         </div>
-                        <div class="col-md-2 col-12">
+                        <div class="col-md-5 col-12">
                             <div class="form-group">
                                 <label for="customSelect">Φύλο</label>
                                 <select class="custom-select" id="customSelect" formControlName="sex">
-                                    <option selected>Επιλέξτε</option>
-                                    <option value="Ανδρας">Ανδρας</option>
-                                    <option value="Γυναίκα">Γυναίκα</option>
-                                    <option value="Αλλο">Αλλο</option>
+                                    <option value="0" selected>Επιλέξτε</option>
+                                    <option value="ΑΡΡΕΝ">ΑΡΡΕΝ</option>
+                                    <option value="ΘΥΛΗ">ΘΥΛΗ</option>
                                 </select>
-                                <ng-container *ngIf="beneficiaryForm.get('sex').touched">
-                                    <small class="text-danger" *ngIf = "beneficiaryForm.get('sex').hasError('required')">Το φύλο χρειάζεται</small>
+                                <ng-container *ngIf="addBeneficiaryForm.get('sex').touched">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('sex')?.value === '0'">
+                                        Δεν έχεται επιλέξει φύλο
+                                    </small>
                                 </ng-container>
                             </div>
                         </div>
-                        <div class="col-md-2 col-12">
+                        <div class="col-md-5 col-12">
                             <div class="form-group">
                                 <label for="customSelect">Ετος γέννησης</label>
                                 <select class="custom-select" id="year" formControlName="birthyear">
-                                    <option selected>Επιλέξτε έτος</option>
+                                    <option value="0" selected>Επιλέξτε έτος</option>
                                     <option  *ngFor="let year of years()" value="{{year}}">{{year}}</option>
                                 </select>
-                                <ng-container *ngIf="beneficiaryForm.get('birthyear').touched">
-                                    <small class="text-danger" *ngIf = "beneficiaryForm.get('birthyear').hasError('required')">Το έτος χρειάζεται</small>
+                                <ng-container *ngIf="addBeneficiaryForm.get('birthyear').touched">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('birthyear')?.value === '0'">
+                                        Δεν έχεται επιλέξει χρονία γέννησης
+                                    </small>
                                 </ng-container>
                             </div>
                         </div>
-                        <div class="col-md-8 col-12">
+                        <div class="col-md-10 col-12">
                             <div class="form-group">
                                 <label for="nationality-icon">Εθνικότητα</label>
                                 <div class="input-group input-group-merge">
@@ -247,8 +253,8 @@
                                             placeholder="Εθνικότητα"
                                             formControlName="nationality">
                                 </div>
-                                <ng-container *ngIf="beneficiaryForm.get('nationality').touched">
-                                    <small class="text-danger" *ngIf = "beneficiaryForm.get('nationality').hasError('required')">
+                                <ng-container *ngIf="addBeneficiaryForm.get('nationality').touched">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('nationality').hasError('required')">
                                         Η εθνικότητα χρειάζεται
                                     </small>
                                 </ng-container>
@@ -267,22 +273,79 @@
                     </div>
                 </div>
 
-
-                <div id="address-step-vertical" class="content">
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-primary btn-prev"  rippleEffect>
-                            <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
-                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
-                        </button>
-                        <button class="btn btn-primary btn-next" (click)="wizardNext()" rippleEffect>
-                            <span class="align-middle d-sm-inline-block d-none">Next</span>
-                            <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
-                        </button>
+                <div id="family-info" class="content">
+                    <div class="content-header">
+                        <h5 class="mb-0">Οικογενιακά Στοιχεία</h5>
+                        <small class="text-muted">Στοιχεία σχετικά με την οικογένειά σας.</small>
                     </div>
-                </div>
-
-
-                <div id="social-links-vertical" class="content">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10 col-12">
+                            <div class="form-group">
+                                <label for="father-first-name-icon">Ονομα Πατέρα</label>
+                                <div class="input-group input-group-merge">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><span [data-feather]="'user'"></span></span>
+                                    </div>
+                                    <input
+                                            type="text"
+                                            id="father-first-name-icon"
+                                            class="form-control"
+                                            name="father-fname-icon"
+                                            formControlName="fatherfirstname"
+                                            placeholder="Ονομα Πατέρα">
+                                </div>
+                                <ng-container *ngIf="addBeneficiaryForm.get('fatherfirstname').touched">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('fatherfirstname').hasError('required')">
+                                        To όνομα του πατέρα χρειάζεται
+                                    </small>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="col-md-10 col-12">
+                            <div class="form-group">
+                                <label for="father-last-name-icon">Επίθετο Πατέρα</label>
+                                <div class="input-group input-group-merge">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><span [data-feather]="'user'"></span></span>
+                                    </div>
+                                    <input
+                                            type="text"
+                                            id="father-last-name-icon"
+                                            class="form-control"
+                                            name="father-lname-icon"
+                                            formControlName="fartherlastname"
+                                            placeholder="Επίθετο Πατέρα">
+                                </div>
+                                <ng-container *ngIf="addBeneficiaryForm.get('fartherlastname').touched">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('fartherlastname').hasError('required')">
+                                        To επίθετο του πατέρα χρειάζεται
+                                    </small>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="col-md-10 col-12">
+                            <div class="form-group">
+                                <label for="mother-name-icon">Ονομα Μητέρας</label>
+                                <div class="input-group input-group-merge">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><span [data-feather]="'user'"></span></span>
+                                    </div>
+                                    <input
+                                            type="text"
+                                            id="mother-name-icon"
+                                            class="form-control"
+                                            name="father-fname-icon"
+                                            formControlName="motherfirstname"
+                                            placeholder="Ονομα Μητέρας">
+                                </div>
+                                <ng-container *ngIf="addBeneficiaryForm.get('motherfirstname').touched">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('motherfirstname').hasError('required')">
+                                        To όνομα της μητέρας χρειάζεται
+                                    </small>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
                     <div class="d-flex justify-content-between">
                         <button class="btn btn-primary btn-prev" (click)="wizardPrevious()" rippleEffect>
                             <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
@@ -295,20 +358,195 @@
                     </div>
                 </div>
 
-
-
-                <div id="communication" class="content">
+                <div id="contact-info" class="content">
+                    <div class="content-header">
+                        <h5 class="mb-0">Στοιχεία Επικοινωνίας</h5>
+                        <small class="text-muted">Τρόποι επικοινωνίας</small>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-10 col-12">
+                            <div class="form-group">
+                                <label for="email-id-icon">Email</label>
+                                <div class="input-group input-group-merge">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><span [data-feather]="'mail'"></span></span>
+                                    </div>
+                                    <input
+                                            type="email"
+                                            id="email-id-icon"
+                                            class="form-control"
+                                            name="email-id-icon"
+                                            formControlName="email"
+                                            placeholder="Email">
+                                </div>
+                                <ng-container *ngIf="addBeneficiaryForm.get('email').value?.length > 0">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('email').hasError('email')">
+                                        Αυτή δεν είναι έγγυρη διεύθυνση email
+                                    </small>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="col-md-10 col-12">
+                            <div class="form-group">
+                                <label for="phone1-icon">Τηλέφωνο-1</label>
+                                <div class="input-group input-group-merge">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><span [data-feather]="'phone'"></span></span>
+                                    </div>
+                                    <input
+                                            type="number"
+                                            id="phone1-icon"
+                                            class="form-control"
+                                            name="phone1-icon"
+                                            minlength="10"
+                                            [imask]="{mask: '0000000000'}"
+                                            formControlName="phone1"
+                                            placeholder="Σταθερό ή Κινητό">
+                                </div>
+                                <ng-container *ngIf="addBeneficiaryForm.get('phone1').touched">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('phone1').hasError('required')">
+                                        To τηλέφωνο χρειάζεται
+                                    </small>
+                                    <br>
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('phone1').value?.length < 10">
+                                        Το τηλέφωνο πρέπει να έχει 10 ψηφία
+                                    </small>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="col-md-10 col-12">
+                            <div class="form-group">
+                                <label for="phone2-icon">Τηλέφωνο-2</label>
+                                <div class="input-group input-group-merge">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><span [data-feather]="'phone'"></span></span>
+                                    </div>
+                                    <input
+                                            type="number"
+                                            id="phone2-icon"
+                                            class="form-control"
+                                            name="phone2-icon"
+                                            formControlName="phone2"
+                                            minlength="10"
+                                            [imask]="{mask: '0000000000'}"
+                                            placeholder="Σταθερό ή Κινητό">
+                                </div>
+                                <ng-container *ngIf="addBeneficiaryForm.get('phone2').touched">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('phone2').value?.length < 10 &&
+                                                                                addBeneficiaryForm.get('phone2').value?.length > 0">
+                                        Το τηλέφωνο πρέπει να έχει 10 ψηφία
+                                    </small>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
                     <div class="d-flex justify-content-between">
                         <button class="btn btn-primary btn-prev" (click)="wizardPrevious()" rippleEffect>
                             <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
                             <span class="align-middle d-sm-inline-block d-none">Previous</span>
                         </button>
-                        <button class="btn btn-success btn-submit" rippleEffect (click)="onSubmit()">Submit</button>
+                        <button class="btn btn-primary btn-next" (click)="wizardNext()" rippleEffect>
+                            <span class="align-middle d-sm-inline-block d-none">Next</span>
+                            <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
+                        </button>
                     </div>
                 </div>
 
+                <div id="address-info" class="content">
+                    <div class="content-header">
+                        <h5 class="mb-0">Στοιχεία Κατοικίας</h5>
+                        <small class="text-muted">Στοιχεία σχετικά με τον τόπο κατοικίας σας</small>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-10 col-12">
+                            <div class="form-group">
+                                <label for="address-icon">Διεύθυνση</label>
+                                <div class="input-group input-group-merge">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><span [data-feather]="'compass'"></span></span>
+                                    </div>
+                                    <input
+                                            type="text"
+                                            id="address-icon"
+                                            class="form-control"
+                                            name="address-icon"
+                                            formControlName="address"
+                                            placeholder="Διεύθυνση">
+                                </div>
+                                <ng-container *ngIf="addBeneficiaryForm.get('address').touched">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('address').hasError('required')">
+                                        H διεύθυνση χρειάζεται
+                                    </small>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="col-md-10 col-12">
+                            <div class="form-group">
+                                <label for="city-icon">Πόλη</label>
+                                <div class="input-group input-group-merge">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><span [data-feather]="'map-pin'"></span></span>
+                                    </div>
+                                    <input
+                                            type="text"
+                                            id="city-icon"
+                                            class="form-control"
+                                            name="city-icon"
+                                            formControlName="city"
+                                            placeholder="Πόλη">
+                                </div>
+                                <ng-container *ngIf="addBeneficiaryForm.get('city').touched">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('city').hasError('required')">
+                                        H πόλη χρειάζεται
+                                    </small>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="col-md-10 col-12">
+                            <div class="form-group">
+                                <label for="tk-icon">TK</label>
+                                <div class="input-group input-group-merge">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><span [data-feather]="'code'"></span></span>
+                                    </div>
+                                    <input
+                                            type="number"
+                                            id="tk-icon"
+                                            class="form-control"
+                                            name="tk-icon"
+                                            minlength="5"
+                                            formControlName="zipcode"
+                                            [imask]="{mask: '00000'}"
+                                            placeholder="_ _ _ _ _">
+                                </div>
+                                <ng-container *ngIf="addBeneficiaryForm.get('zipcode').touched">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('zipcode').hasError('required')">
+                                        Ο ΤΚ χρειάζεται
+                                    </small>
+                                    <br>
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('zipcode').value?.length < 5">
+                                        Ο ΤΚ πρέπει να έχει 5 ψηφία
+                                    </small>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-primary btn-prev" (click)="wizardPrevious()" rippleEffect>
+                            <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
+                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                        </button>
+                        <button class="btn btn-success btn-submit" rippleEffect (click)="onSubmit()">
+                            <!--<span class="spinner-border spinner-border-sm" *ngIf="isLoading" role="status" aria-hidden="true"></span>-->
+                            Αποθήκευση
+                        </button>
+                    </div>
+                </div>
 
-            </form>
+            </div>
         </div>
     </div>
 </section>
+
+
+

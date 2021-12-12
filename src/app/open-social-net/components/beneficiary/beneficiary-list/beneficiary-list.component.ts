@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {BeneficiaryService} from "../../../services/beneficiary.service";
+import {BeneficiaryModel} from "../../../models/beneficiary-model";
+import {take} from "rxjs/operators";
+import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {ToastrService} from "ngx-toastr";
+import {DatatableComponent} from "@swimlane/ngx-datatable";
 
 @Component({
   selector: 'app-beneficiary-list',
@@ -7,28 +13,70 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BeneficiaryListComponent implements OnInit {
 
-  beneficiaries = [];
+  @ViewChild(BeneficiaryListComponent) table: BeneficiaryListComponent;
+  beneficiaries?: BeneficiaryModel[];
   current_page = 1;
+  listForm: FormGroup;
+  isLoading = false;
+  matchingResults: any;
+  tempData = [];
 
 
-  constructor() { }
+  constructor(private beneficiaryService: BeneficiaryService, private fb: FormBuilder, private toaster: ToastrService) { }
 
   ngOnInit(): void {
-    this.beneficiaries = [
-      {'recid': 1, 'name' : 'Ανδρέας Ανδρέου', 'amka' : '1708752234', 'nationality' : 'Ελληνική', 'enabled' : true},
-      {'recid': 2, 'name' : 'Βασίλειος Βασιλείου', 'amka' : '1708752234', 'nationality' : 'Ελληνική', 'enabled' : true},
-      {'recid': 3, 'name' : 'Γεώργιος Γεωργίου', 'amka' : '1708752234', 'nationality' : 'Ελληνική', 'enabled' : false},
-      {'recid': 4, 'name' : 'Δημήτριος Δημητρίου', 'amka' : '1708752234', 'nationality' : 'Ελληνική', 'enabled' : true},
-      {'recid': 5, 'name' : 'Νικόλαος Νικολάου', 'amka' : '1708752234', 'nationality' : 'Ελληνική', 'enabled' : true},
-      {'recid': 6, 'name' : 'Πέτρος Πέτρου', 'amka' : '1708752234', 'nationality' : 'Ελληνική', 'enabled' : false},
-      {'recid': 7, 'name' : 'Κώστας Κωνσταντίνου', 'amka' : '1708752234', 'nationality' : 'Ελληνική', 'enabled' : true},
-      {'recid': 8, 'name' : 'Γιάννης Ιωάννου', 'amka' : '1708752234', 'nationality' : 'Ελληνική', 'enabled' : true},
-      {'recid': 9, 'name' : 'Χρήστος Χρήστου', 'amka' : '1708752234', 'nationality' : 'Ελληνική', 'enabled' : true},
-      {'recid': 10, 'name' : 'Μαρία Νικολάου', 'amka' : '1708752234', 'nationality' : 'Ελληνική', 'enabled' : false},
-      {'recid': 11, 'name' : 'Καίτη Μπλίκα', 'amka' : '1708752234', 'nationality' : 'Ελληνική', 'enabled' : true},
-      {'recid': 12, 'name' : 'Χασάν Χασάν', 'amka' : '1708752234', 'nationality' : 'Ελληνική', 'enabled' : true},
-      {'recid': 13, 'name' : 'Απντούλ Απντούλ', 'amka' : '1708752234', 'nationality' : 'Ελληνική', 'enabled' : true}
-    ]
+    this.isLoading = true;
+    this.initializeForm();
+      this.beneficiaryService.getAll().pipe(take(1)).subscribe(results => {
+        this.beneficiaries = results;
+        this.matchingResults = this.beneficiaries;
+        for(const field of this.beneficiaries) {
+          (this.listForm.get('listArray') as FormArray).push(
+              this.fb.group({enabled: this.fb.control(field['enabled'])
+          }))
+        }
+        this.isLoading = false;
+      },
+          error => {
+            this.isLoading = false;
+            console.log(error?.errormessage)
+          })
+  }
+
+  initializeForm() {
+    this.listForm = new FormGroup({
+      listArray: new FormArray([])
+    })
+  }
+
+  onChange(value, x) {
+    this.beneficiaries[x].enabled = value.target.checked;
+    (this.listForm.get('listArray') as FormArray).at(x).get('enabled').setValue(value.target.checked);
+    this.beneficiaryService.edit(this.beneficiaries[x], x).pipe(take(1)).subscribe(saveChanges => {
+      this.matchingResults[x] = this.beneficiaries[x];
+      if(value.target.checked) {
+        this.toaster.success('Ο λογαριασμός του Οφελούμενου','Ενεργοποιήθηκε')
+      } else {
+        this.toaster.warning('Ο λογαριασμός του Οφελούμενου','Απενεργοποιήθηκε')
+      }
+    },
+        error => {
+            console.log(error?.errormessage)
+        })
+  }
+
+  filterUpdate(event) {
+    const val = event.target.value.toUpperCase()
+    if(val.length === 0) {
+     this.matchingResults = this.beneficiaries
+    }
+
+    // filter our data
+    const temp = this.matchingResults.filter(function (results) {
+      return results.lastname.toUpperCase().indexOf(val) !== -1 || !val;
+    });
+
+    this.matchingResults = temp;
   }
 
 }

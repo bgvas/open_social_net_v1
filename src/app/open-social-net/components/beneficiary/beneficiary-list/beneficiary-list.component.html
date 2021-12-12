@@ -18,9 +18,24 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <p class="card-text">
-                            <button class="btn btn-primary ml-2" routerLink="/app/beneficiary/add" rippleEffect>Προσθήκη Ωφελούμενου</button>
-                        </p>
+                        <div class="card-text">
+                            <div class="row">
+                                <div class="col-9">
+                                    <button class="btn btn-primary ml-2" routerLink="/app/beneficiary/add" rippleEffect>Προσθήκη Ωφελούμενου</button>
+                                </div>
+                                <div class="col-3">
+                                    <label class="d-flex align-items-center">
+                                        Αναζήτηση
+                                        <input
+                                            type="search"
+                                            placeholder="Αναζήτηση"
+                                            class="form-control ml-25"
+                                            (keyup)="filterUpdate($event)"
+                                            (search)="filterUpdate($event)">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="table-responsive">
                         <table class="table">
@@ -29,14 +44,14 @@
                                 <th>Ονομ/νυμο</th>
                                 <th>ΑΜΚΑ</th>
                                 <th>Εθνικοτητα</th>
-                                <th>Κατασταση</th>
+                                <th>Ενεργός</th>
                                 <th>Ενεργειες</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr *ngFor="let beneficiary of beneficiaries | slice: (current_page - 1) * 10 : current_page * 10">
+                            <tr *ngFor="let beneficiary of matchingResults | slice: (current_page - 1) * 10 : current_page * 10; let x = index">
                                 <td>
-                                    <span class="font-weight-bold">{{beneficiary?.name}}</span>
+                                    <span class="font-weight-bold">{{beneficiary?.lastname}} {{beneficiary?.firstname}}</span>
                                 </td>
                                 <td>
                                     <span class="font-weight-bold">{{beneficiary?.amka}}</span>
@@ -45,9 +60,17 @@
                                     <span class="font-weight-bold">{{beneficiary?.nationality}}</span>
                                 </td>
                                 <td>
-                                    <span class="badge badge-pill mr-1" [ngClass] = "{'badge-light-danger': !beneficiary?.enabled, 'badge-light-success': beneficiary?.enabled}">
-                                        {{beneficiary?.enabled | statusGreek}}
-                                    </span>
+                                    <form [formGroup]="listForm">
+                                        <div class="custom-control custom-switch" formArrayName="listArray">
+                                            <div [formGroupName]="x">
+                                                <input type="checkbox" class="custom-control-input" id="switch{{x}}" (change)="onChange($event, x)" formControlName="enabled">
+                                                <label class="custom-control-label" for="switch{{x}}">
+                                                    <span class="switch-icon-left"><i data-feather="check"></i></span>
+                                                    <span class="switch-icon-right"><i data-feather="x"></i></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </td>
                                 <td class="overflow-hidden">
                                     <div ngbDropdown container="body">
@@ -67,17 +90,24 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr *ngIf = "beneficiaries?.length === 0">
+                            <tr *ngIf = "matchingResults?.length === 0">
                                 <span class="p-4 text-warning">δεν βρέθηκαν αποτελέσματα</span>
                             </tr>
                             </tbody>
                             <tbody>
                             <tr>
                                 <td>
-                                    <ngb-pagination [collectionSize]="beneficiaries?.length" [(page)] = 'current_page' ></ngb-pagination>
+                                    <ngb-pagination [collectionSize]="matchingResults?.length" [(page)] = 'current_page' ></ngb-pagination>
                                 </td>
                                 <td></td>
-                                <td></td>
+                                <td>
+                                    <ng-container  *ngIf="isLoading">
+                                        <p class="text-center">Περιμένετε.....</p>
+                                        <div class="row justify-content-center">
+                                            <div class="spinner-border mr-50" style="width: 3rem; height: 3rem" role="status"></div>
+                                        </div>
+                                    </ng-container>
+                                </td>
                                 <td></td>
                                 <td>
                                     Σύνολο εγγραφών: {{beneficiaries?.length}}
