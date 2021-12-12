@@ -1,0 +1,21 @@
+{
+  "recid": 1,
+  "afm":"111111111",
+  "lastname":"ΒΑΣΙΛΗΣ",
+  "firstname":"ΓΕΩΡΓΟΥΛΑΣ",
+  "fartherlastname":"ΓΕΩΡΓΟΥΛΑΣ",
+  "fatherfirstname":"ΑΘΑΝΑΣΙΟΣ",
+  "motherfirstname":"ΣΩΤΗΡΙΑ",
+  "sex":"ΑΡΡΕΝ",
+  "amka":"01010101011",
+  "adtorpassport":"ΑΑ123457",
+  "nationality":"ΕΛΛΗΝΙΚΗ",
+  "address":"ΡΟΔΙΤΣΑ",
+  "city":"ΛΑΜΙΑ",
+  "email": "aa@a.com",
+  "zipcode":"123 45",
+  "phone1":"6977777777",
+  "phone2":"2310000000",
+  "birthyear": "1975",
+  "enabled": true
+}

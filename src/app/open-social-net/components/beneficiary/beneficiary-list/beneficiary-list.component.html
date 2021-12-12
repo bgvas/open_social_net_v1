@@ -29,14 +29,14 @@
                                 <th>Ονομ/νυμο</th>
                                 <th>ΑΜΚΑ</th>
                                 <th>Εθνικοτητα</th>
-                                <th>Κατασταση</th>
+                                <th>Ενεργός</th>
                                 <th>Ενεργειες</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr *ngFor="let beneficiary of beneficiaries | slice: (current_page - 1) * 10 : current_page * 10">
+                            <tr *ngFor="let beneficiary of beneficiaries | slice: (current_page - 1) * 10 : current_page * 10; let x = index">
                                 <td>
-                                    <span class="font-weight-bold">{{beneficiary?.name}}</span>
+                                    <span class="font-weight-bold">{{beneficiary?.lastname}} {{beneficiary?.firstname}}</span>
                                 </td>
                                 <td>
                                     <span class="font-weight-bold">{{beneficiary?.amka}}</span>
@@ -45,9 +45,17 @@
                                     <span class="font-weight-bold">{{beneficiary?.nationality}}</span>
                                 </td>
                                 <td>
-                                    <span class="badge badge-pill mr-1" [ngClass] = "{'badge-light-danger': !beneficiary?.enabled, 'badge-light-success': beneficiary?.enabled}">
-                                        {{beneficiary?.enabled | statusGreek}}
-                                    </span>
+                                    <form [formGroup]="listForm">
+                                        <div class="custom-control custom-switch" formArrayName="listArray">
+                                            <div [formGroupName]="x">
+                                                <input type="checkbox" class="custom-control-input" id="switch{{x}}" (change)="onChange($event, x)" formControlName="enabled">
+                                                <label class="custom-control-label" for="switch{{x}}">
+                                                    <span class="switch-icon-left"><i data-feather="check"></i></span>
+                                                    <span class="switch-icon-right"><i data-feather="x"></i></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </td>
                                 <td class="overflow-hidden">
                                     <div ngbDropdown container="body">

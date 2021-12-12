@@ -1,6 +1,12 @@
 import {Component, OnChanges, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import Stepper from "bs-stepper";
+import {BeneficiaryService} from "../../../services/beneficiary.service";
+import {take} from "rxjs/operators";
+
+import {Router} from "@angular/router";
+import {NotificationsService} from "../../../../main/extensions/notifications.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-beneficiary-add',
@@ -9,16 +15,14 @@ import Stepper from "bs-stepper";
 })
 export class BeneficiaryAddComponent implements OnInit {
 
-  sexOptions: ['Ανδρας', 'Γυναίκα', 'Αλλο'];
   beneficiaryForm: FormGroup;
   private wizardStepper: Stepper;
   date = new Date();
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private beneficiaryService: BeneficiaryService, private router: Router, private toaster: ToastrService) {
   }
 
   ngOnInit(): void {
-
     this.initializeForm();
     this.wizardStepper = new Stepper(document.querySelector('#stepper2'), {
       linear: false,
@@ -50,10 +54,18 @@ export class BeneficiaryAddComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.beneficiaryForm.invalid) {
+    /*if (this.beneficiaryForm.invalid) {
       this.beneficiaryForm.markAllAsTouched();
       return;
-    }
+    }*/
+    this.beneficiaryService.create(this.beneficiaryForm.value).pipe(take(1)).subscribe(newBeneficiary => {
+        this.toaster.success('Ολοκληρώθηκε επιτυχώς', 'Προσθήκη νέου Οφελούμενου')
+    },
+        error => {
+            this.toaster.error('Απέτυχε!!!', 'Προσθήκη νέου Οφελούμενου')
+            console.log(error?.errormessage);
+        })
+    history.back();
   }
 
   wizardNext() {
