@@ -3,9 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import Stepper from "bs-stepper";
 import {BeneficiaryService} from "../../../services/beneficiary.service";
 import {take} from "rxjs/operators";
-
 import {Router} from "@angular/router";
-import {NotificationsService} from "../../../../main/extensions/notifications.service";
 import {ToastrService} from "ngx-toastr";
 
 @Component({
@@ -15,23 +13,23 @@ import {ToastrService} from "ngx-toastr";
 })
 export class BeneficiaryAddComponent implements OnInit {
 
-  beneficiaryForm: FormGroup;
-  private wizardStepper: Stepper;
+  addBeneficiaryForm: FormGroup;
+  wizardStepper: Stepper;
   date = new Date();
 
-  constructor(private fb: FormBuilder, private beneficiaryService: BeneficiaryService, private router: Router, private toaster: ToastrService) {
-  }
+  constructor(private fb: FormBuilder, private beneficiaryService: BeneficiaryService, private router: Router, private toaster: ToastrService) {  }
 
   ngOnInit(): void {
-    this.initializeForm();
+
     this.wizardStepper = new Stepper(document.querySelector('#stepper2'), {
       linear: false,
       animation: true
     });
+    this.initializeForm();
   }
 
   initializeForm(): void {
-    this.beneficiaryForm = this.fb.group({
+    this.addBeneficiaryForm = this.fb.group({
       'afm': this.fb.control('', [Validators.minLength(9), Validators.maxLength(9)]),
       'amka': this.fb.control('', [Validators.required]),
       'adtorpassport': this.fb.control('', [Validators.required, Validators.maxLength(20)]),
@@ -58,7 +56,7 @@ export class BeneficiaryAddComponent implements OnInit {
       this.beneficiaryForm.markAllAsTouched();
       return;
     }*/
-    this.beneficiaryService.create(this.beneficiaryForm.value).pipe(take(1)).subscribe(newBeneficiary => {
+    this.beneficiaryService.create(this.addBeneficiaryForm.value).pipe(take(1)).subscribe(newBeneficiary => {
         this.toaster.success('Ολοκληρώθηκε επιτυχώς', 'Προσθήκη νέου Οφελούμενου')
     },
         error => {
@@ -81,7 +79,6 @@ export class BeneficiaryAddComponent implements OnInit {
     for(let i = this.date.getFullYear(); i >= this.date.getFullYear() - 100; i--) {
       yearsArray.push(i);
     }
-
     return yearsArray;
   }
 

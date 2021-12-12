@@ -72,8 +72,9 @@
 
 
         <!-- Πεδία -->
-        <div class="bs-stepper-content">
-            <form class="form form-vertical" [formGroup]="beneficiaryForm">
+        <div class="bs-stepper-content" >
+
+            <div class="form form-vertical" [formGroup]="addBeneficiaryForm">
 
                 <div id="personal-numbers" class="content">
                     <div class="content-header">
@@ -95,8 +96,8 @@
                                     minlength="9"
                                     placeholder="9 ψηφία του ΑΦΜ">
 
-                            <ng-container *ngIf="beneficiaryForm.get('afm')?.touched">
-                                <small class="text-danger" *ngIf = "beneficiaryForm.get('afm')?.value?.length < 9">
+                            <ng-container *ngIf="addBeneficiaryForm.get('afm')?.touched">
+                                <small class="text-danger" *ngIf = "addBeneficiaryForm.get('afm')?.value?.length < 9">
                                     O ΑΦΜ πρεπει να έχει 9 ψηφία
                                 </small>
                             </ng-container>
@@ -113,12 +114,12 @@
                                     minlength="11"
                                     placeholder="11 ψηφία του ΑΜΚΑ">
 
-                            <ng-container *ngIf="beneficiaryForm.get('amka').touched">
-                                <small class="text-danger" *ngIf = "beneficiaryForm.get('amka').hasError('required')">
+                            <ng-container *ngIf="addBeneficiaryForm.get('amka').touched">
+                                <small class="text-danger" *ngIf = "addBeneficiaryForm.get('amka').hasError('required')">
                                     O AMKA είναι απαραίτητος
                                 </small>
                                 <br>
-                                <small class="text-danger" *ngIf = "beneficiaryForm.get('amka')?.value?.length < 11">
+                                <small class="text-danger" *ngIf = "addBeneficiaryForm.get('amka')?.value?.length < 11">
                                     O AMKA πρεπει να έχει 11 ψηφία
                                 </small>
                             </ng-container>
@@ -138,8 +139,8 @@
                                             placeholder="Ταυτότητα/Διαβατήριο"
                                             formControlName="adtorpassport">
                                 </div>
-                                <ng-container *ngIf="beneficiaryForm.get('adtorpassport').touched">
-                                    <small class="text-danger" *ngIf = "beneficiaryForm.get('adtorpassport').hasError('required')">
+                                <ng-container *ngIf="addBeneficiaryForm.get('adtorpassport').touched">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('adtorpassport').hasError('required')">
                                         O αριθμός χρειάζεται
                                     </small>
                                 </ng-container>
@@ -179,8 +180,8 @@
                                             placeholder="Ονομα"
                                             formControlName="firstname">
                                 </div>
-                                <ng-container *ngIf="beneficiaryForm.get('firstname').touched">
-                                    <small class="text-danger" *ngIf = "beneficiaryForm.get('firstname').hasError('required')">
+                                <ng-container *ngIf="addBeneficiaryForm.get('firstname').touched">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('firstname').hasError('required')">
                                         Το όνομα χρειάζεται
                                     </small>
                                 </ng-container>
@@ -201,8 +202,8 @@
                                             placeholder="Επίθετο"
                                             formControlName = "lastname">
                                 </div>
-                                <ng-container *ngIf="beneficiaryForm.get('lastname').touched">
-                                    <small class="text-danger" *ngIf = "beneficiaryForm.get('lastname').hasError('required')">
+                                <ng-container *ngIf="addBeneficiaryForm.get('lastname').touched">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('lastname').hasError('required')">
                                         Το επίθετο χρειάζεται
                                     </small>
                                 </ng-container>
@@ -216,8 +217,8 @@
                                     <option value="ΑΡΡΕΝ">ΑΡΡΕΝ</option>
                                     <option value="ΘΥΛΗ">ΘΥΛΗ</option>
                                 </select>
-                                <ng-container *ngIf="beneficiaryForm.get('sex').touched">
-                                    <small class="text-danger" *ngIf = "beneficiaryForm.get('sex')?.value === '0'">
+                                <ng-container *ngIf="addBeneficiaryForm.get('sex').touched">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('sex')?.value === '0'">
                                         Δεν έχεται επιλέξει φύλο
                                     </small>
                                 </ng-container>
@@ -230,8 +231,8 @@
                                     <option value="0" selected>Επιλέξτε έτος</option>
                                     <option  *ngFor="let year of years()" value="{{year}}">{{year}}</option>
                                 </select>
-                                <ng-container *ngIf="beneficiaryForm.get('birthyear').touched">
-                                    <small class="text-danger" *ngIf = "beneficiaryForm.get('birthyear')?.value === '0'">
+                                <ng-container *ngIf="addBeneficiaryForm.get('birthyear').touched">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('birthyear')?.value === '0'">
                                         Δεν έχεται επιλέξει χρονία γέννησης
                                     </small>
                                 </ng-container>
@@ -252,8 +253,8 @@
                                             placeholder="Εθνικότητα"
                                             formControlName="nationality">
                                 </div>
-                                <ng-container *ngIf="beneficiaryForm.get('nationality').touched">
-                                    <small class="text-danger" *ngIf = "beneficiaryForm.get('nationality').hasError('required')">
+                                <ng-container *ngIf="addBeneficiaryForm.get('nationality').touched">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('nationality').hasError('required')">
                                         Η εθνικότητα χρειάζεται
                                     </small>
                                 </ng-container>
@@ -293,8 +294,8 @@
                                             formControlName="fatherfirstname"
                                             placeholder="Ονομα Πατέρα">
                                 </div>
-                                <ng-container *ngIf="beneficiaryForm.get('fatherfirstname').touched">
-                                    <small class="text-danger" *ngIf = "beneficiaryForm.get('fatherfirstname').hasError('required')">
+                                <ng-container *ngIf="addBeneficiaryForm.get('fatherfirstname').touched">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('fatherfirstname').hasError('required')">
                                         To όνομα του πατέρα χρειάζεται
                                     </small>
                                 </ng-container>
@@ -315,8 +316,8 @@
                                             formControlName="fartherlastname"
                                             placeholder="Επίθετο Πατέρα">
                                 </div>
-                                <ng-container *ngIf="beneficiaryForm.get('fartherlastname').touched">
-                                    <small class="text-danger" *ngIf = "beneficiaryForm.get('fartherlastname').hasError('required')">
+                                <ng-container *ngIf="addBeneficiaryForm.get('fartherlastname').touched">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('fartherlastname').hasError('required')">
                                         To επίθετο του πατέρα χρειάζεται
                                     </small>
                                 </ng-container>
@@ -337,8 +338,8 @@
                                             formControlName="motherfirstname"
                                             placeholder="Ονομα Μητέρας">
                                 </div>
-                                <ng-container *ngIf="beneficiaryForm.get('motherfirstname').touched">
-                                    <small class="text-danger" *ngIf = "beneficiaryForm.get('motherfirstname').hasError('required')">
+                                <ng-container *ngIf="addBeneficiaryForm.get('motherfirstname').touched">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('motherfirstname').hasError('required')">
                                         To όνομα της μητέρας χρειάζεται
                                     </small>
                                 </ng-container>
@@ -378,8 +379,8 @@
                                             formControlName="email"
                                             placeholder="Email">
                                 </div>
-                                <ng-container *ngIf="beneficiaryForm.get('email').value?.length > 0">
-                                    <small class="text-danger" *ngIf = "beneficiaryForm.get('email').hasError('email')">
+                                <ng-container *ngIf="addBeneficiaryForm.get('email').value?.length > 0">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('email').hasError('email')">
                                         Αυτή δεν είναι έγγυρη διεύθυνση email
                                     </small>
                                 </ng-container>
@@ -402,12 +403,12 @@
                                             formControlName="phone1"
                                             placeholder="Σταθερό ή Κινητό">
                                 </div>
-                                <ng-container *ngIf="beneficiaryForm.get('phone1').touched">
-                                    <small class="text-danger" *ngIf = "beneficiaryForm.get('phone1').hasError('required')">
+                                <ng-container *ngIf="addBeneficiaryForm.get('phone1').touched">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('phone1').hasError('required')">
                                         To τηλέφωνο χρειάζεται
                                     </small>
                                     <br>
-                                    <small class="text-danger" *ngIf = "beneficiaryForm.get('phone1').value?.length < 10">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('phone1').value?.length < 10">
                                         Το τηλέφωνο πρέπει να έχει 10 ψηφία
                                     </small>
                                 </ng-container>
@@ -430,9 +431,9 @@
                                             [imask]="{mask: '0000000000'}"
                                             placeholder="Σταθερό ή Κινητό">
                                 </div>
-                                <ng-container *ngIf="beneficiaryForm.get('phone2').touched">
-                                    <small class="text-danger" *ngIf = "beneficiaryForm.get('phone2').value?.length < 10 &&
-                                                                                beneficiaryForm.get('phone2').value?.length > 0">
+                                <ng-container *ngIf="addBeneficiaryForm.get('phone2').touched">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('phone2').value?.length < 10 &&
+                                                                                addBeneficiaryForm.get('phone2').value?.length > 0">
                                         Το τηλέφωνο πρέπει να έχει 10 ψηφία
                                     </small>
                                 </ng-container>
@@ -472,8 +473,8 @@
                                             formControlName="address"
                                             placeholder="Διεύθυνση">
                                 </div>
-                                <ng-container *ngIf="beneficiaryForm.get('address').touched">
-                                    <small class="text-danger" *ngIf = "beneficiaryForm.get('address').hasError('required')">
+                                <ng-container *ngIf="addBeneficiaryForm.get('address').touched">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('address').hasError('required')">
                                         H διεύθυνση χρειάζεται
                                     </small>
                                 </ng-container>
@@ -494,8 +495,8 @@
                                             formControlName="city"
                                             placeholder="Πόλη">
                                 </div>
-                                <ng-container *ngIf="beneficiaryForm.get('city').touched">
-                                    <small class="text-danger" *ngIf = "beneficiaryForm.get('city').hasError('required')">
+                                <ng-container *ngIf="addBeneficiaryForm.get('city').touched">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('city').hasError('required')">
                                         H πόλη χρειάζεται
                                     </small>
                                 </ng-container>
@@ -518,12 +519,12 @@
                                             [imask]="{mask: '00000'}"
                                             placeholder="_ _ _ _ _">
                                 </div>
-                                <ng-container *ngIf="beneficiaryForm.get('zipcode').touched">
-                                    <small class="text-danger" *ngIf = "beneficiaryForm.get('zipcode').hasError('required')">
+                                <ng-container *ngIf="addBeneficiaryForm.get('zipcode').touched">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('zipcode').hasError('required')">
                                         Ο ΤΚ χρειάζεται
                                     </small>
                                     <br>
-                                    <small class="text-danger" *ngIf = "beneficiaryForm.get('zipcode').value?.length < 5">
+                                    <small class="text-danger" *ngIf = "addBeneficiaryForm.get('zipcode').value?.length < 5">
                                         Ο ΤΚ πρέπει να έχει 5 ψηφία
                                     </small>
                                 </ng-container>
@@ -542,7 +543,7 @@
                     </div>
                 </div>
 
-            </form>
+            </div>
         </div>
     </div>
 </section>

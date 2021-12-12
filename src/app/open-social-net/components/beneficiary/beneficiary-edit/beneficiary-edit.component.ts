@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import Stepper from "bs-stepper";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {BeneficiaryModel} from "../../../models/beneficiary-model";
@@ -13,11 +13,11 @@ import {ActivatedRoute} from "@angular/router";
   templateUrl: './beneficiary-edit.component.html',
   styleUrls: ['./beneficiary-edit.component.scss']
 })
-export class BeneficiaryEditComponent implements OnInit {
+export class BeneficiaryEditComponent implements OnInit, OnDestroy {
 
 
   beneficiaryForm: FormGroup;
-  private wizardStepper: Stepper;
+  wizardStepper: Stepper;
   date = new Date();
   user = new BeneficiaryModel();
   isLoading = false;
@@ -41,6 +41,10 @@ export class BeneficiaryEditComponent implements OnInit {
       linear: false,
       animation: true
     });
+  }
+
+  ngOnDestroy() {
+    console.log('exit')
   }
 
   edit_beneficiary(id: number) {

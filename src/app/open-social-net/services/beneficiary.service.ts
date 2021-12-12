@@ -15,11 +15,11 @@ export class BeneficiaryService {
   constructor(private http: HttpClient) {  }
 
   create(newBeneficiary: BeneficiaryModel): Observable<any> {
-    return this.http.get(this.dummy_beUrl + '/create.json');//.post(this.beUrl, newBeneficiary)
+    return this.http.post('http://195.181.247.9/opensocialnet/api/beneficiary/create', newBeneficiary)
   }
 
   getById(id: number): Observable<BeneficiaryModel> {
-    return this.http.get<BeneficiaryModel>(this.dummy_beUrl + '/getById.json');//(this.beUrl + '/GetById/' + id);
+    return this.http.get(this.beUrl + '/GetById/' + id);
   }
 
   getAll(): Observable<BeneficiaryModel[]> {
