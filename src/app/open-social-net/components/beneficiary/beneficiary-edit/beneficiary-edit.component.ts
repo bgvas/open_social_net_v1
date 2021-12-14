@@ -21,30 +21,23 @@ export class BeneficiaryEditComponent implements OnInit, OnDestroy {
   date = new Date();
   user = new BeneficiaryModel();
   isLoading = false;
+  id = 0;
 
-  constructor(private fb: FormBuilder, private toaster: ToastrService, private beneficiaryService: BeneficiaryService, private route: ActivatedRoute) {
-    this.initializeForm();
-    this.route.queryParams.pipe(take(1)).subscribe(params => {
-      if(params['id'] === '') {
-        history.back();
-      }
-      this.edit_beneficiary(params['id']);
-    },
-        error => {
-            console.log(error?.errormessage);
-            history.back();
-        })
+  constructor(private fb: FormBuilder, private toaster: ToastrService, private beneficiaryService: BeneficiaryService, private activatedRoute: ActivatedRoute) {
+
+      this.id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
+      this.initializeForm();
+      this.edit_beneficiary(this.id);
   }
 
   ngOnInit(): void {
-    this.wizardStepper = new Stepper(document.querySelector('#stepper2'), {
+    this.wizardStepper = new Stepper(document.querySelector('#editStepper'), {
       linear: false,
       animation: true
     });
   }
 
   ngOnDestroy() {
-    console.log('exit')
   }
 
   edit_beneficiary(id: number) {

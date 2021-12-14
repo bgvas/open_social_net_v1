@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import {SweetAlert2LoaderService, SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2';
 
 import { CoreCommonModule } from '@core/common.module';
 import { CardSnippetModule } from '@core/components/card-snippet/card-snippet.module';
@@ -26,6 +26,9 @@ const routes: Routes = [
     CoreCommonModule,
     CardSnippetModule,
     SweetAlert2Module.forRoot()
-  ]
+  ],
+  providers: [
+    {provide: SweetAlert2LoaderService},
+  ],
 })
 export class SweetAlertsModule {}

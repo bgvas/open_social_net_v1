@@ -1,4 +1,5 @@
 import { CoreMenu } from '@core/types';
+import {environment} from "../../environments/environment";
 
 //? DOC: http://localhost:7777/demo/vuexy-angular-admin-dashboard-template/documentation/guide/development/navigation-menus.html#interface
 
@@ -46,12 +47,12 @@ export const menu: CoreMenu[] = [
           },
           {
             id: 'beneficiary-preview',
-            title: 'Προσθήκη',
+            title: 'Προβολή',
             translate: 'MENU.APP.BENEFICIARY.REGISTER.PREVIEW',
             type: 'item',
-            role: ['User'],
+            role: ['Admin', 'User'],
             icon: 'circle',
-            url: 'app/beneficiary/preview'
+            url: 'app/beneficiary/preview/' + (JSON.parse(localStorage.getItem('currentUser')))?.id
           }
         ]
       },
@@ -87,7 +88,7 @@ export const menu: CoreMenu[] = [
             type: 'item',
             icon: 'circle',
             role: ['Provider'],
-            url: 'app/benefactor/preview'
+            url: 'app/benefactor/preview' + (JSON.parse(localStorage.getItem('currentUser')))?.id
           }
         ]
       },
@@ -123,7 +124,7 @@ export const menu: CoreMenu[] = [
             type: 'item',
             icon: 'circle',
             role: ['Provider'],
-            url: 'app/contributor/preview'
+            url: 'app/contributor/preview' + (JSON.parse(localStorage.getItem('currentUser')))?.id
           }
         ]
       },
@@ -159,7 +160,7 @@ export const menu: CoreMenu[] = [
             type: 'item',
             icon: 'circle',
             role: ['Provider'],
-            url: 'app/supplier/preview'
+            url: 'app/supplier/preview' + (JSON.parse(localStorage.getItem('currentUser')))?.id
           }
         ]
       }

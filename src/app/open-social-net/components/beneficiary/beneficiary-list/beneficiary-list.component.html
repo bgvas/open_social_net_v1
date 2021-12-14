@@ -19,17 +19,17 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-text">
-                            <div class="row">
-                                <div class="col-9">
+                            <div class="row justify-content-center">
+                                <div class="col-md-9 col-12">
                                     <button class="btn btn-primary ml-2" routerLink="/app/beneficiary/add" rippleEffect>Προσθήκη Ωφελούμενου</button>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-md-3 col-12">
                                     <label class="d-flex align-items-center">
                                         Αναζήτηση
                                         <input
                                             type="search"
                                             placeholder="Αναζήτηση"
-                                            class="form-control ml-25"
+                                            class="form-control text-uppercase ml-25"
                                             (keyup)="filterUpdate($event)"
                                             (search)="filterUpdate($event)">
                                     </label>
@@ -49,7 +49,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr *ngFor="let beneficiary of matchingResults | slice: (current_page - 1) * 10 : current_page * 10; let x = index">
+                            <tr *ngFor="let beneficiary of matchingResults | slice: (current_page - 1) * 10 : current_page * 10;
+                                        let x = index" [ngClass]="{'text-disabled': !beneficiary.enabled}">
                                 <td>
                                     <span class="font-weight-bold">{{beneficiary?.lastname}} {{beneficiary?.firstname}}</span>
                                 </td>
@@ -78,10 +79,15 @@
                                             <i [data-feather]="'more-horizontal'"></i>
                                         </button>
                                         <div ngbDropdownMenu>
-                                            <a ngbDropdownItem [routerLink]="['/app/beneficiary/edit']" [queryParams]="{id: beneficiary?.recid}">
-                                                <i data-feather="edit-2" class="mr-50"></i>
+                                            <a ngbDropdownItem [routerLink]="['/app/beneficiary/preview', beneficiary?.recid]">
+                                                <i data-feather="file-text" class="mr-50"></i>
+                                                <span>Προβολή</span>
+                                            </a>
+                                            <a ngbDropdownItem [routerLink]="['/app/beneficiary/edit', beneficiary?.recid]">
+                                                <i data-feather="edit" class="mr-50"></i>
                                                 <span>Επεξεργασία</span>
                                             </a>
+
                                             <a ngbDropdownItem href="javascript:void(0);">
                                                 <i data-feather="trash" class="mr-50"></i>
                                                 <span>Διαγραφή</span>
@@ -110,7 +116,7 @@
                                 </td>
                                 <td></td>
                                 <td>
-                                    Σύνολο εγγραφών: {{beneficiaries?.length}}
+                                    Σύνολο εγγραφών: {{matchingResults?.length}}
                                 </td>
                             </tr>
                             </tbody>
@@ -121,3 +127,4 @@
         </div>
     </div>
 </div>
+

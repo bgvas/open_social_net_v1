@@ -25,6 +25,7 @@ export class BeneficiaryListComponent implements OnInit {
   constructor(private beneficiaryService: BeneficiaryService, private fb: FormBuilder, private toaster: ToastrService) { }
 
   ngOnInit(): void {
+
     this.isLoading = true;
     this.initializeForm();
       this.beneficiaryService.getAll().pipe(take(1)).subscribe(results => {
@@ -79,4 +80,7 @@ export class BeneficiaryListComponent implements OnInit {
     this.matchingResults = temp;
   }
 
+  ConfirmColorOpen(){
+
+  }
 }

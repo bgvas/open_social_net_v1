@@ -9,10 +9,6 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {CoreDirectivesModule} from "../../@core/directives/directives";
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 import {NgSelectModule} from "@ng-select/ng-select";
-import { BeneficiaryAddComponent } from './components/beneficiary/beneficiary-add/beneficiary-add.component';
-import { BeneficiaryEditComponent } from './components/beneficiary/beneficiary-edit/beneficiary-edit.component';
-import { BeneficiaryListComponent } from './components/beneficiary/beneficiary-list/beneficiary-list.component';
-import { BeneficiaryPreviewComponent } from './components/beneficiary/beneficiary-preview/beneficiary-preview.component';
 import { BenefactorPreviewComponent } from './components/benefactor/benefactor-preview/benefactor-preview.component';
 import { BenefactorEditComponent } from './components/benefactor/benefactor-edit/benefactor-edit.component';
 import { BenefactorAddComponent } from './components/benefactor/benefactor-add/benefactor-add.component';
@@ -28,6 +24,9 @@ import { ContributorListComponent } from './components/contributor/contributor-l
 import {IMaskModule} from "angular-imask";
 import {CardSnippetModule} from "../../@core/components/card-snippet/card-snippet.module";
 import {CsvModule} from "@ctrl/ngx-csv";
+import {AuthGuard} from "../auth/helpers";
+import {BeneficiaryModule} from "./components/beneficiary/beneficiary.module";
+
 
 
 
@@ -35,13 +34,13 @@ import {CsvModule} from "@ctrl/ngx-csv";
 
 const routes: Routes = [
 
-  // Ωφελούμενοι //
-  { path: 'beneficiary', children: [
-      { path: 'list', component: BeneficiaryListComponent },
-      { path: 'add', component: BeneficiaryAddComponent },
-      { path: 'edit', component: BeneficiaryEditComponent},
-      { path: 'preview', component: BeneficiaryEditComponent }
-    ] },
+    // Ωφελούμενοι //
+    {
+        path: 'beneficiary',
+        loadChildren: () => import('./components/beneficiary/beneficiary.module').then(m => m.BeneficiaryModule),
+        canActivate: [AuthGuard]
+    },
+
 
   // Δωρητές //
   { path: 'benefactor', children: [
@@ -74,10 +73,6 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    BeneficiaryAddComponent,
-    BeneficiaryEditComponent,
-    BeneficiaryListComponent,
-    BeneficiaryPreviewComponent,
     BenefactorPreviewComponent,
     BenefactorEditComponent,
     BenefactorAddComponent,
@@ -105,7 +100,8 @@ const routes: Routes = [
         ReactiveFormsModule,
         IMaskModule,
         CardSnippetModule,
-        CsvModule
+        CsvModule,
+        BeneficiaryModule
     ]
 })
 
