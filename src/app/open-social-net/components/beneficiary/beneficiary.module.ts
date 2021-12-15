@@ -12,6 +12,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {IMaskModule} from "angular-imask";
 import {BeneficiaryService} from "../../services/beneficiary.service";
 import {SharedModule} from "../../shared/shared.module";
+import { BeneficiaryNeedsComponent } from './beneficiary-needs/beneficiary-needs.component';
 
 
 
@@ -22,7 +23,8 @@ const routes: Routes = [
       { path: 'add', component: BeneficiaryAddComponent , data: { animation: 'BeneficiaryAddComponent' } },
       { path: 'edit/:id', component: BeneficiaryEditComponent, data: { animation: 'BeneficiaryEditComponent' } },
       { path: 'preview/:id', component: BeneficiaryPreviewComponent, data: { animation: 'BeneficiaryPreviewComponent' } },
-      { path: 'delete/:id', component: BeneficiaryDeleteComponent, data: { animation: 'BeneficiaryDeleteComponent' } }
+      { path: 'delete/:id', component: BeneficiaryDeleteComponent, data: { animation: 'BeneficiaryDeleteComponent' } },
+      { path: 'needs/:id', component: BeneficiaryNeedsComponent, data: { animation: 'BeneficiaryNeedsComponent' } }
 
 ];
 
@@ -32,7 +34,8 @@ const routes: Routes = [
       BeneficiaryDeleteComponent,
       BeneficiaryListComponent,
       BeneficiaryPreviewComponent,
-      BeneficiaryEditComponent
+      BeneficiaryEditComponent,
+      BeneficiaryNeedsComponent,
   ],
     imports: [
         RouterModule.forChild(routes),

@@ -7,6 +7,7 @@ export const locale = {
         SECTION: 'Περιεχόμενα',
         BENEFICIARY: {
           PREVIEW: 'Προβολή',
+          NEEDS: 'Λίστα Αναγκών',
           COLLAPSIBLE: 'Ωφελούμενοι',
           REGISTER: {
             LIST: 'Λίστα',

@@ -53,9 +53,18 @@ export const menu: CoreMenu[] = [
         title: 'Προβολή',
         translate: 'MENU.APP.BENEFICIARY.PREVIEW',
         type: 'item',
-        role: ['User'],
+        role: ['Admin', 'User'],
         icon: 'user',
         url: 'app/beneficiary/preview/' + (JSON.parse(localStorage.getItem('currentUser')))?.id
+      },
+      {
+        id: 'beneficiary-needs',
+        title: 'Λίστα Αναγκών',
+        translate: 'MENU.APP.BENEFICIARY.NEEDS',
+        type: 'item',
+        icon: 'list',
+        role: ['Admin', 'User'],
+        url: 'app/beneficiary/needs/' + (JSON.parse(localStorage.getItem('currentUser')))?.id
       },
       {
         id: 'benefactor',
@@ -90,7 +99,7 @@ export const menu: CoreMenu[] = [
             icon: 'circle',
             role: ['Provider'],
             url: 'app/benefactor/preview' + (JSON.parse(localStorage.getItem('currentUser')))?.id
-          }
+          },
         ]
       },
       {

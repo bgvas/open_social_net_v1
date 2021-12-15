@@ -43,6 +43,7 @@
                             <tr>
                                 <th>Ονομ/νυμο</th>
                                 <th>ΑΜΚΑ</th>
+                                <th>Ονομα Πατρός</th>
                                 <th>Εθνικοτητα</th>
                                 <th>Ενεργός</th>
                                 <th>Ενεργειες</th>
@@ -56,6 +57,9 @@
                                 </td>
                                 <td>
                                     <span class="font-weight-bold">{{beneficiary?.amka}}</span>
+                                </td>
+                                <td>
+                                    <span class="font-weight-bold">{{beneficiary?.fatherfirstname}}</span>
                                 </td>
                                 <td>
                                     <span class="font-weight-bold">{{beneficiary?.nationality}}</span>
@@ -88,7 +92,7 @@
                                                 <i data-feather="edit" class="mr-50"></i>
                                                 <span>Επεξεργασία</span>
                                             </a>
-                                            <app-alert-delete-modal [typeOfUser]="'Οφελούμενου'" (confirm)="delete($event)"></app-alert-delete-modal>
+                                            <app-alert-delete-modal [typeOfUser]="'Οφελούμενου'" (confirm)="delete($event, beneficiary?.recid)"></app-alert-delete-modal>
                                         </div>
                                     </div>
                                 </td>
@@ -111,6 +115,7 @@
                                         </div>
                                     </ng-container>
                                 </td>
+                                <td></td>
                                 <td></td>
                                 <td>
                                     Σύνολο εγγραφών: {{matchingResults?.length}}

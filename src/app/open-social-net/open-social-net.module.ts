@@ -104,7 +104,6 @@ const routes: Routes = [
         CsvModule,
         BeneficiaryModule,
         SharedModule
-
     ]
 })
 

@@ -1,10 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {BeneficiaryService} from "../../../services/beneficiary.service";
 import {BeneficiaryModel} from "../../../models/beneficiary-model";
-import {take} from "rxjs/operators";
+import {map, mergeMap, take, timeInterval} from "rxjs/operators";
 import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
 import {DatatableComponent} from "@swimlane/ngx-datatable";
+import {concat, defer, EMPTY, from, interval} from "rxjs";
 
 @Component({
   selector: 'app-beneficiary-list',
@@ -13,7 +14,7 @@ import {DatatableComponent} from "@swimlane/ngx-datatable";
 })
 export class BeneficiaryListComponent implements OnInit {
 
-  @ViewChild(BeneficiaryListComponent) table: BeneficiaryListComponent;
+ //@ViewChild(BeneficiaryListComponent) table: BeneficiaryListComponent;
   beneficiaries?: BeneficiaryModel[];
   current_page = 1;
   listForm: FormGroup;
@@ -38,7 +39,7 @@ export class BeneficiaryListComponent implements OnInit {
   }
 
   loadList() {
-    this.beneficiaryService.getAll().pipe(take(1)).subscribe(results => {
+    this.beneficiaryService.getAll().subscribe(results => {
           this.beneficiaries = results;
           this.matchingResults = this.beneficiaries;
           for(const field of this.beneficiaries) {
@@ -84,10 +85,17 @@ export class BeneficiaryListComponent implements OnInit {
     this.matchingResults = temp;
   }
 
-  delete(confirmed){
+  delete(confirmed, id){
     if(confirmed) {
-      this.toaster.success('διαγράφηκε επιτυχώς.','Λογαριασμός Οφελούμενου')
-      this.loadList();
+      this.beneficiaryService.delete(id).pipe(take(1)).subscribe(deleted => {
+        console.log(deleted)
+        this.toaster.success('διαγράφηκε επιτυχώς.','Λογαριασμός Οφελούμενου')
+        this.loadList();
+      },
+          error => {
+            console.log(error?.errormessage)
+            this.toaster.error('H διαγραφή απέτυχε.','Λογαριασμός Οφελούμενου')
+          })
     }
   }
 }
