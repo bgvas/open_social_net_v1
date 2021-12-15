@@ -28,26 +28,30 @@ export class BeneficiaryListComponent implements OnInit {
 
     this.isLoading = true;
     this.initializeForm();
-      this.beneficiaryService.getAll().pipe(take(1)).subscribe(results => {
-        this.beneficiaries = results;
-        this.matchingResults = this.beneficiaries;
-        for(const field of this.beneficiaries) {
-          (this.listForm.get('listArray') as FormArray).push(
-              this.fb.group({enabled: this.fb.control(field['enabled'])
-          }))
-        }
-        this.isLoading = false;
-      },
-          error => {
-            this.isLoading = false;
-            console.log(error?.errormessage)
-          })
+    this.loadList();
   }
 
   initializeForm() {
     this.listForm = new FormGroup({
       listArray: new FormArray([])
     })
+  }
+
+  loadList() {
+    this.beneficiaryService.getAll().pipe(take(1)).subscribe(results => {
+          this.beneficiaries = results;
+          this.matchingResults = this.beneficiaries;
+          for(const field of this.beneficiaries) {
+            (this.listForm.get('listArray') as FormArray).push(
+                this.fb.group({enabled: this.fb.control(field['enabled'])
+                }))
+          }
+          this.isLoading = false;
+        },
+        error => {
+          this.isLoading = false;
+          console.log(error?.errormessage)
+        })
   }
 
   onChange(value, x) {
@@ -80,7 +84,10 @@ export class BeneficiaryListComponent implements OnInit {
     this.matchingResults = temp;
   }
 
-  ConfirmColorOpen(){
-
+  delete(confirmed){
+    if(confirmed) {
+      this.toaster.success('διαγράφηκε επιτυχώς.','Λογαριασμός Οφελούμενου')
+      this.loadList();
+    }
   }
 }

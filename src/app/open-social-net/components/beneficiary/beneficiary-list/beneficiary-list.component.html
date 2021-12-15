@@ -83,15 +83,12 @@
                                                 <i data-feather="file-text" class="mr-50"></i>
                                                 <span>Προβολή</span>
                                             </a>
+
                                             <a ngbDropdownItem [routerLink]="['/app/beneficiary/edit', beneficiary?.recid]">
                                                 <i data-feather="edit" class="mr-50"></i>
                                                 <span>Επεξεργασία</span>
                                             </a>
-
-                                            <a ngbDropdownItem href="javascript:void(0);">
-                                                <i data-feather="trash" class="mr-50"></i>
-                                                <span>Διαγραφή</span>
-                                            </a>
+                                            <app-alert-delete-modal [typeOfUser]="'Οφελούμενου'" (confirm)="delete($event)"></app-alert-delete-modal>
                                         </div>
                                     </div>
                                 </td>

@@ -45,16 +45,17 @@ export const menu: CoreMenu[] = [
             icon: 'circle',
             url: 'app/beneficiary/add'
           },
-          {
-            id: 'beneficiary-preview',
-            title: 'Προβολή',
-            translate: 'MENU.APP.BENEFICIARY.REGISTER.PREVIEW',
-            type: 'item',
-            role: ['Admin', 'User'],
-            icon: 'circle',
-            url: 'app/beneficiary/preview/' + (JSON.parse(localStorage.getItem('currentUser')))?.id
-          }
+
         ]
+      },
+      {
+        id: 'beneficiary_preview',
+        title: 'Προβολή',
+        translate: 'MENU.APP.BENEFICIARY.PREVIEW',
+        type: 'item',
+        role: ['User'],
+        icon: 'user',
+        url: 'app/beneficiary/preview/' + (JSON.parse(localStorage.getItem('currentUser')))?.id
       },
       {
         id: 'benefactor',

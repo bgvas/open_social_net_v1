@@ -26,8 +26,7 @@ import {CardSnippetModule} from "../../@core/components/card-snippet/card-snippe
 import {CsvModule} from "@ctrl/ngx-csv";
 import {AuthGuard} from "../auth/helpers";
 import {BeneficiaryModule} from "./components/beneficiary/beneficiary.module";
-
-
+import {SharedModule} from "./shared/shared.module";
 
 
 // routing
@@ -72,20 +71,22 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    BenefactorPreviewComponent,
-    BenefactorEditComponent,
-    BenefactorAddComponent,
-    BenefactorListComponent,
-    SupplierListComponent,
-    SupplierAddComponent,
-    SupplierEditComponent,
-    SupplierPreviewComponent,
-    ContributorPreviewComponent,
-    ContributorEditComponent,
-    ContributorAddComponent,
-    ContributorListComponent
-  ],
+    declarations: [
+        BenefactorPreviewComponent,
+        BenefactorEditComponent,
+        BenefactorAddComponent,
+        BenefactorListComponent,
+        SupplierListComponent,
+        SupplierAddComponent,
+        SupplierEditComponent,
+        SupplierPreviewComponent,
+        ContributorPreviewComponent,
+        ContributorEditComponent,
+        ContributorAddComponent,
+        ContributorListComponent
+    ],
+    exports: [
+    ],
     imports: [
         RouterModule.forChild(routes),
         CommonModule,
@@ -101,7 +102,9 @@ const routes: Routes = [
         IMaskModule,
         CardSnippetModule,
         CsvModule,
-        BeneficiaryModule
+        BeneficiaryModule,
+        SharedModule
+
     ]
 })
 

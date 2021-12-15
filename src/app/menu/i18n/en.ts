@@ -6,13 +6,14 @@ export const locale = {
       APP: {
         SECTION: 'Περιεχόμενα',
         BENEFICIARY: {
+          PREVIEW: 'Προβολή',
           COLLAPSIBLE: 'Ωφελούμενοι',
           REGISTER: {
             LIST: 'Λίστα',
             ADD: 'Προσθήκη',
-            PREVIEW: 'Προβολή'
           }
         },
+
         BENEFACTOR: {
           COLLAPSIBLE: 'Δωρητές',
           REGISTER: {

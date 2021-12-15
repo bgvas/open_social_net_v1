@@ -21,6 +21,7 @@ import { DashboardService } from 'app/main/dashboard/dashboard.service';
 import { AnalyticsComponent } from 'app/main/dashboard/analytics/analytics.component';
 import { EcommerceComponent } from 'app/main/dashboard/ecommerce/ecommerce.component';
 import {AdminDashboardComponent} from "./admin-dashboard/admin-dashboard.component";
+import {SharedModule} from "../../open-social-net/shared/shared.module";
 
 const routes = [
   {
@@ -55,16 +56,17 @@ const routes = [
 
 @NgModule({
   declarations: [AnalyticsComponent, EcommerceComponent, AdminDashboardComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    TranslateModule,
-    NgbModule,
-    PerfectScrollbarModule,
-    CoreCommonModule,
-    NgApexchartsModule,
-    InvoiceModule
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        TranslateModule,
+        NgbModule,
+        PerfectScrollbarModule,
+        CoreCommonModule,
+        NgApexchartsModule,
+        InvoiceModule,
+        SharedModule
+    ],
   providers: [DashboardService, InvoiceListService],
   exports: [EcommerceComponent, AdminDashboardComponent]
 })

@@ -10,6 +10,11 @@ import {CoreDirectivesModule} from "../../../../@core/directives/directives";
 import {NgbModule, NgbPaginationModule} from "@ng-bootstrap/ng-bootstrap";
 import {ReactiveFormsModule} from "@angular/forms";
 import {IMaskModule} from "angular-imask";
+import {BeneficiaryService} from "../../services/beneficiary.service";
+import {SharedModule} from "../../shared/shared.module";
+
+
+
 
 const routes: Routes = [
 
@@ -36,7 +41,12 @@ const routes: Routes = [
         NgbPaginationModule,
         ReactiveFormsModule,
         IMaskModule,
-        NgbModule
+        NgbModule,
+        SharedModule
+    ],
+
+    providers: [
+        BeneficiaryService
     ]
 })
 export class BeneficiaryModule { }

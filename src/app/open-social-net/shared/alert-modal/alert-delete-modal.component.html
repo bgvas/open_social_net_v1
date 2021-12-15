@@ -1,0 +1,37 @@
+<!-- Button trigger modal -->
+<a ngbDropdownItem (click)="modalOpen(alert_delete_modal)" rippleEffect>
+    <i data-feather="trash" class="mr-50"></i>
+    <span>Διαγραφή</span>
+</a>
+
+<!-- Modal -->
+<ng-template #alert_delete_modal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">Προσοχή!!! Διαγραφή {{typeOfUser}}</h4>
+    </div>
+    <div class="modal-body" tabindex="0">
+        <div class="row">
+            <div class="col-4">
+                <i class="font-large-5 text-danger" [data-feather]="'info'"></i>
+            </div>
+            <div class="col-8">
+                Αν προχωρήσετε σε διαγραφή, τα στοιχεία του {{typeOfUser}} θα χαθούν για πάντα.
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-6">
+                <button type="button" class="btn btn-danger" (click)="goOnDelete()" rippleEffect>
+                    Διαγραφή
+                </button>
+            </div>
+            <div class="col-6">
+                <button type="button" class="btn btn-outline-primary" (click)="modal.close('Accept click')" rippleEffect>
+                    Ακύρωση
+                </button>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<!-- / Modal -->
