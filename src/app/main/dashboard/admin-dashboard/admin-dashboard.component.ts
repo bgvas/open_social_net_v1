@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {BeneficiaryService} from "../../../open-social-net/services/beneficiary.service";
+
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminDashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private beneficiaryService: BeneficiaryService) { }
 
   ngOnInit(): void {
+
   }
 
 }
