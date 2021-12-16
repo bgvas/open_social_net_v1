@@ -1,2 +1,15 @@
 @import '@core/scss/angular/libs/form-wizard.component.scss';
 @import '@core/scss/angular/libs/select.component.scss';
+
+.serif-font {
+  font-family: sans-serif;
+}
+
+.header, .header-space, .footer, .footer-space { height: 100px; }
+.header { position: fixed; top: 0; }
+.footer { position: fixed; bottom: 0; }
+@media screen {
+  :host {
+    display: none;
+  }
+}

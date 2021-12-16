@@ -404,8 +404,8 @@
                 <div class="card-body">
                     <button type="button" [routerLink]="['/app/beneficiary/edit', id]"
                             class="btn btn-primary btn-block mb-75" rippleEffect>Επεξεργασία</button>
-                    <button type="button" class="btn btn-outline-primary btn-block mb-75" rippleEffect>Λήψη Εγγράφου</button>
-                    <button type="button" class="btn btn-outline-primary btn-block mb-75" rippleEffect>Εκτύπωση Εγγράφου</button>
+                    <button type="button" [routerLink]="['/app/beneficiary/document', id]"
+                            class="btn btn-outline-primary btn-block mb-75" rippleEffect>Προβολή Εγγράφου</button>
                 </div>
             </div>
         </div>

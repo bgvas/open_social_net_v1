@@ -47,7 +47,7 @@ export class BeneficiaryAddComponent implements OnInit {
       'phone1': this.fb.control('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
       'phone2': this.fb.control('', [Validators.minLength(10), Validators.maxLength(10)]),
       'email': this.fb.control('', [Validators.email]),
-      'enabled': this.fb.control('', Validators.required)
+      'enabled': this.fb.control('true', Validators.required)
     })
   }
 

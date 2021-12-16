@@ -42,8 +42,8 @@
                             <thead>
                             <tr>
                                 <th>Ονομ/νυμο</th>
-                                <th>ΑΜΚΑ</th>
                                 <th>Ονομα Πατρός</th>
+                                <th>ΑΜΚΑ</th>
                                 <th>Εθνικοτητα</th>
                                 <th>Ενεργός</th>
                                 <th>Ενεργειες</th>
@@ -56,10 +56,10 @@
                                     <span class="font-weight-bold">{{beneficiary?.lastname}} {{beneficiary?.firstname}}</span>
                                 </td>
                                 <td>
-                                    <span class="font-weight-bold">{{beneficiary?.amka}}</span>
+                                    <span class="font-weight-bold">{{beneficiary?.fatherfirstname}}</span>
                                 </td>
                                 <td>
-                                    <span class="font-weight-bold">{{beneficiary?.fatherfirstname}}</span>
+                                    <span class="font-weight-bold">{{beneficiary?.amka}}</span>
                                 </td>
                                 <td>
                                     <span class="font-weight-bold">{{beneficiary?.nationality}}</span>
@@ -68,7 +68,7 @@
                                     <form [formGroup]="listForm">
                                         <div class="custom-control custom-switch" formArrayName="listArray">
                                             <div [formGroupName]="x">
-                                                <input type="checkbox" class="custom-control-input" id="switch{{x}}" (change)="onChange($event, x)" formControlName="enabled">
+                                                <input type="checkbox" class="custom-control-input" id="switch{{x}}" (change)="onChange($event, x, beneficiary?.recid)" formControlName="enabled">
                                                 <label class="custom-control-label" for="switch{{x}}">
                                                     <span class="switch-icon-left"><i data-feather="check"></i></span>
                                                     <span class="switch-icon-right"><i data-feather="x"></i></span>
@@ -87,12 +87,18 @@
                                                 <i data-feather="file-text" class="mr-50"></i>
                                                 <span>Προβολή</span>
                                             </a>
-
+                                            <a ngbDropdownItem>
+                                                <i data-feather="list" class="mr-50"></i>
+                                                <span>Λίστα Αναγκών</span>
+                                            </a>
                                             <a ngbDropdownItem [routerLink]="['/app/beneficiary/edit', beneficiary?.recid]">
                                                 <i data-feather="edit" class="mr-50"></i>
                                                 <span>Επεξεργασία</span>
                                             </a>
-                                            <app-alert-delete-modal [typeOfUser]="'Οφελούμενου'" (confirm)="delete($event, beneficiary?.recid)"></app-alert-delete-modal>
+                                            <app-alert-delete-modal
+                                                    [typeOfUser]="'Οφελούμενου'"
+                                                    (confirm)="delete($event, beneficiary?.recid)">
+                                            </app-alert-delete-modal>
                                         </div>
                                     </div>
                                 </td>

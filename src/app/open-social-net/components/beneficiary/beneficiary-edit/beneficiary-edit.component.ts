@@ -100,7 +100,7 @@ export class BeneficiaryEditComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.beneficiaryService.create(this.beneficiaryForm.value).pipe(take(1)).subscribe(newBeneficiary => {
+    this.beneficiaryService.edit(this.beneficiaryForm.value, this.id).pipe(take(1)).subscribe(updatedBeneficiary => {
           this.toaster.success('Ολοκληρώθηκε επιτυχώς', 'Επεξεργασία Στοιχείων Οφελούμενου')
           history.back();
         },

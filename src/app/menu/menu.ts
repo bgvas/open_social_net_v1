@@ -53,7 +53,7 @@ export const menu: CoreMenu[] = [
         title: 'Προβολή',
         translate: 'MENU.APP.BENEFICIARY.PREVIEW',
         type: 'item',
-        role: ['Admin', 'User'],
+        role: ['User'],
         icon: 'user',
         url: 'app/beneficiary/preview/' + (JSON.parse(localStorage.getItem('currentUser')))?.id
       },
@@ -63,7 +63,7 @@ export const menu: CoreMenu[] = [
         translate: 'MENU.APP.BENEFICIARY.NEEDS',
         type: 'item',
         icon: 'list',
-        role: ['Admin', 'User'],
+        role: ['User'],
         url: 'app/beneficiary/needs/' + (JSON.parse(localStorage.getItem('currentUser')))?.id
       },
       {

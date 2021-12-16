@@ -1,35 +1,43 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {BeneficiaryService} from "../../../services/beneficiary.service";
 import {BeneficiaryModel} from "../../../models/beneficiary-model";
-import {map, mergeMap, take, timeInterval} from "rxjs/operators";
+import {map, mergeMap, take, takeUntil, timeInterval} from "rxjs/operators";
 import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
 import {DatatableComponent} from "@swimlane/ngx-datatable";
-import {concat, defer, EMPTY, from, interval} from "rxjs";
+import {concat, defer, EMPTY, from, interval, Subject} from "rxjs";
+import {TodoService} from "../../../../main/apps/todo/todo.service";
+import {AppService} from "../../../../app.service";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-beneficiary-list',
   templateUrl: './beneficiary-list.component.html',
   styleUrls: ['./beneficiary-list.component.scss']
 })
-export class BeneficiaryListComponent implements OnInit {
+export class BeneficiaryListComponent implements OnInit, OnDestroy {
 
- //@ViewChild(BeneficiaryListComponent) table: BeneficiaryListComponent;
   beneficiaries?: BeneficiaryModel[];
   current_page = 1;
   listForm: FormGroup;
   isLoading = false;
   matchingResults: any;
   tempData = [];
+  numberOfRecords = 0;
+  private unsubscribe = new Subject<void>();
 
 
-  constructor(private beneficiaryService: BeneficiaryService, private fb: FormBuilder, private toaster: ToastrService) { }
+  constructor(private beneficiaryService: BeneficiaryService, private fb: FormBuilder, private toaster: ToastrService, private http:HttpClient) { }
 
   ngOnInit(): void {
-
     this.isLoading = true;
     this.initializeForm();
     this.loadList();
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 
   initializeForm() {
@@ -39,27 +47,31 @@ export class BeneficiaryListComponent implements OnInit {
   }
 
   loadList() {
-    this.beneficiaryService.getAll().subscribe(results => {
-          this.beneficiaries = results;
-          this.matchingResults = this.beneficiaries;
-          for(const field of this.beneficiaries) {
-            (this.listForm.get('listArray') as FormArray).push(
-                this.fb.group({enabled: this.fb.control(field['enabled'])
-                }))
-          }
-          this.isLoading = false;
-        },
-        error => {
-          this.isLoading = false;
-          console.log(error?.errormessage)
-        })
+    this.beneficiaryService.getAll().pipe(takeUntil(this.unsubscribe)).subscribe(results => {
+      this.beneficiaries = results;
+      this.matchingResults = this.beneficiaries;
+
+      for(const field of this.beneficiaries) {
+        (this.listForm.get('listArray') as FormArray).push(
+            this.fb.group({enabled: this.fb.control(field['enabled'])
+            }))
+      }
+      this.isLoading = false;
+    },
+      error => {
+        this.isLoading = false;
+        console.log(error?.errormessage)
+      })
   }
 
-  onChange(value, x) {
+  onChange(value, x, id) {
     this.beneficiaries[x].enabled = value.target.checked;
     (this.listForm.get('listArray') as FormArray).at(x).get('enabled').setValue(value.target.checked);
-    this.beneficiaryService.edit(this.beneficiaries[x], x).pipe(take(1)).subscribe(saveChanges => {
-      this.matchingResults[x] = this.beneficiaries[x];
+
+    const update_beneficiary = this.beneficiaries[x];
+
+    this.beneficiaryService.edit(update_beneficiary, id).subscribe(updated_beneficiary => {
+      this.matchingResults[x] = updated_beneficiary;
       if(value.target.checked) {
         this.toaster.success('Ο λογαριασμός του Οφελούμενου','Ενεργοποιήθηκε')
       } else {
@@ -67,6 +79,7 @@ export class BeneficiaryListComponent implements OnInit {
       }
     },
         error => {
+            this.toaster.error('Απέτυχε!!!', 'Επεξεργασία Στοιχείων Οφελούμενου')
             console.log(error?.errormessage)
         })
   }

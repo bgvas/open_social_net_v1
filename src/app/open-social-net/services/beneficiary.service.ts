@@ -10,7 +10,6 @@ import {map} from "rxjs/operators";
 })
 export class BeneficiaryService {
 
-  private dummy_beUrl = 'assets/dummy_http'
   private beUrl = environment.apiUrl + '/beneficiary';
   private _temp: any;
   private _list: any;
@@ -18,23 +17,24 @@ export class BeneficiaryService {
   constructor(private http: HttpClient) {  }
 
   create(newBeneficiary: BeneficiaryModel): Observable<any> {
-    return this.http.post(this.beUrl + '/create', newBeneficiary)
+    return this.http.post<any>(this.beUrl + '/create', newBeneficiary)
+  }
+
+  edit(changes: BeneficiaryModel, id: number): Observable<BeneficiaryModel> {
+    return this.http.put<BeneficiaryModel>(this.beUrl + '/update/' + id, changes)
   }
 
   getById(id: number): Observable<BeneficiaryModel> {
-    return this.http.get(this.beUrl + '/GetById/' + id);
+    return this.http.get<BeneficiaryModel>(this.beUrl + '/GetById/' + id);
   }
 
-  getAll(): Observable<any> {
-    return this.http.get(this.beUrl + '/search');
+  getAll(): Observable<BeneficiaryModel[]> {
+    return this.http.get<BeneficiaryModel[]>(this.beUrl + '/search')
   }
 
-  edit(changes: BeneficiaryModel, id: number): Observable<any> {
-    return this.http.get(this.dummy_beUrl + '/create.json');//.put(this.beUrl + '/' + id, changes)
-  }
 
   delete(id: number): Observable<any> {
-    return this.http.get(this.dummy_beUrl + '/create.json');//.delete(this.beUrl + '/' + id)
+    return this.http.delete<any>(this.beUrl + '/delete/' + id)
   }
 
   set temp(value: any) {

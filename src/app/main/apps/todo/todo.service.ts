@@ -5,6 +5,7 @@ import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Todo } from './todo.model';
+import {BeneficiaryModel} from "../../../open-social-net/models/beneficiary-model";
 
 @Injectable()
 export class TodoService implements Resolve<any> {
@@ -309,4 +310,6 @@ export class TodoService implements Resolve<any> {
       this.onTodoDataChange.next(this.todos);
     }
   }
+
+
 }
