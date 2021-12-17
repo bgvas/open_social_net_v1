@@ -14,6 +14,7 @@ import {BeneficiaryService} from "../../services/beneficiary.service";
 import {SharedModule} from "../../shared/shared.module";
 import { BeneficiaryNeedsComponent } from './beneficiary-needs/beneficiary-needs.component';
 import { BeneficiaryDocumentComponent } from './beneficiary-document/beneficiary-document.component';
+import {NgxPrintModule} from "ngx-print";
 
 
 
@@ -48,7 +49,8 @@ const routes: Routes = [
         ReactiveFormsModule,
         IMaskModule,
         NgbModule,
-        SharedModule
+        SharedModule,
+        NgxPrintModule
     ],
 
     providers: [

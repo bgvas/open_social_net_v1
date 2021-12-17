@@ -1,144 +1,113 @@
 
-<div class="row justify-content-center">
-    <div class="col-md-6 col-12">
-        <div class="card">
-            <div class="card-title">
-                <div class="row justify-content-center">
-                    <div class="col-md-4 col-12 mt-5">
-                        <img src="https://develop.thisisathens.org/images/Composite_eata_gr_logo.png" alt="Δήμος Αθηναίων">
-                    </div>
-                    <div class="col-md-7 col-12 mt-5">
-                        <ng-container class="justify-content-right mt-4">
-                            <div class="h4 text-center">Open Social Net</div>
-                            <div class="h5 text-center text-secondary">Δίκτυο Κοινωνικής Προστασίας της Αθήνας</div>
-                        </ng-container>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="row justify-content-center">
-                    <div class="col-md-11 col-12 font-weight-bolder text-center serif-font">
-                        <h2>Στοιχεία Οφελούμενου</h2>
+<div id="print-section">
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-12">
+            <div class="card">
+                <div class="card-title">
+                    <div class="row justify-content-center mt-5">
+                        <div class="col-md-4 col-12 ml-2">
+                            <img src="https://develop.thisisathens.org/images/Composite_eata_gr_logo.png" alt="Δήμος Αθηναίων">
+                        </div>
+                        <div class="col-md-7 col-12">
+                            <div class="justify-content-right">
+                                <div class="small font-weight-bolder text-center">Open Social Net</div>
+                                <div class="small text-center text-secondary">Δίκτυο Κοινωνικής Προστασίας της Αθήνας</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="row justify-content-center">
-                    <div class="col-11 serif-font">
-                        <hr>
-                        <p class="h5 font-weight-bold">ΠΡΟΣΩΠΙΚΑ ΣΤΟΙΧΕΙΑ</p>
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-md-11 col-12 mb-1 border font-weight-bolder text-center serif-font">
+                            <h4>Στοιχεία Οφελούμενου</h4>
+                        </div>
                     </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-md-6 col-12 h5 justify-content-center">
-                          <table class="m-2" style="width: 100%">
-                              <tr>
-                                  <td class="text-dark font-weight-bold" style="width: 50%">ΟΝΟΜΑ: </td>
-                                  <td style="width: 50%" class="text-secondary">ΒΑΣΙΛΕΙΟΣ</td>
-                              </tr>
-                              <tr>
-                                  <td class="text-dark font-weight-bold" style="width: 50%">ΕΠΙΘΕΤΟ: </td>
-                                  <td style="width: 50%" class="text-secondary">ΓΕΩΡΓΟΥΛΑΣ</td>
-                              </tr>
-                              <tr>
-                                  <td class="text-dark font-weight-bold" style="width: 50%">ΦΥΛΟ: </td>
-                                  <td style="width: 50%" class="text-secondary">ΑΡΡΕΝ</td>
-                              </tr>
-                              <tr>
-                                  <td class="text-dark font-weight-bold" style="width: 50%">ΕΤΟΣ ΓΕΝΝΗΣΗΣ: </td>
-                                  <td style="width: 50%" class="text-secondary">1975</td>
-                              </tr>
-                              <tr>
-                                  <td class="text-dark font-weight-bold" style="width: 50%">ΑΜΚΑ: </td>
-                                  <td style="width: 50%" class="text-secondary">23567845623</td>
-                              </tr>
-                              <tr>
-                                  <td class="text-dark font-weight-bold" style="width: 50%">ΑΦΜ: </td>
-                                  <td style="width: 50%" class="text-secondary">164390768</td>
-                              </tr>
-                              <tr>
-                                  <td class="text-dark font-weight-bold" style="width: 50%">ΤΑΥΤΟΤΗΤΑ/ΔΙΑΒΑΤΗΡΙΟ </td>
-                                  <td style="width: 50%" class="text-secondary">ΑΒ1246854</td>
-                              </tr>
-                          </table>
+                    <div class="row justify-content-center">
+                        <div class="col-md-11 col-12 mb-2 serif-font">
+                            <span>ΠΡΟΣΩΠΙΚΑ ΣΤΟΙΧΕΙΑ</span>
+                        </div>
                     </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-11 serif-font">
-                        <hr>
-                        <p class="h5 font-weight-bold">ΣΤΟΙΧΕΙΑ ΓΟΝΕΩΝ</p>
+                    <div class="row justify-content-center">
+                        <div class="col-md-11 col-sm-8 col-12">
+                            <div class="row justify-content-center">
+                                <div class="small font-weight-bolder pb-1 col-6">ΟΝΟΜΑ:</div><div class="small col-6">{{user?.firstname}}</div>
+                                <div class="small font-weight-bolder pb-1 col-6">ΕΠΙΘΕΤΟ:</div><div class="small col-6">{{user?.lastname}}</div>
+                                <div class="small font-weight-bolder pb-1 col-6">ΦΥΛΟ:</div><div class="small col-6">{{user?.sex}}</div>
+                                <div class="small font-weight-bolder pb-1 col-6">ΕΤΟΣ ΓΕΝΝΗΣΗΣ:</div><div class="small col-6">{{user?.birthyear}}</div>
+                                <div class="small font-weight-bolder pb-1 col-6">ΕΘΝΙΚΟΤΗΤΑ:</div><div class="small col-6">{{user?.nationality}}</div>
+                                <div class="small font-weight-bolder pb-1 col-6">ΑΜΚΑ:</div><div class="small col-6">{{user?.amka}}</div>
+                                <div class="small font-weight-bolder pb-1 col-6">ΑΦΜ:</div><div class="small col-6">{{user?.afm}}</div>
+                                <div class="small font-weight-bolder pb-1 col-6">ΤΑΥΤΟΤΗΤΑ/ΔΙΑΒΑΤΗΡΙΟ:</div><div class="small col-6">{{user?.adtorpassport}}</div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-md-6 col-12 h5 justify-content-center">
-                        <table class="m-2" style="width: 100%">
-                            <tr>
-                                <td class="text-dark font-weight-bold" style="width: 50%">ΟΝΟΜΑ ΠΑΤΡΟΣ: </td>
-                                <td style="width: 50%" class="text-secondary">ΑΘΑΝΑΣΙΟΣ</td>
-                            </tr>
-                            <tr>
-                                <td class="text-dark font-weight-bold" style="width: 50%">ΕΠΙΘΕΤΟ ΠΑΤΡΟΣ: </td>
-                                <td style="width: 50%" class="text-secondary">ΓΕΩΡΓΟΥΛΑΣ</td>
-                            </tr>
-                            <tr>
-                                <td class="text-dark font-weight-bold" style="width: 50%">ΓΕΝΟΣ ΜΗΤΕΡΑΣ: </td>
-                                <td style="width: 50%" class="text-secondary">ΛΑΦΙΑ</td>
-                            </tr>
-                        </table>
+                    <hr>
+                    <div class="row justify-content-center">
+                        <div class="col-md-11 col-12 mb-2 serif-font">
+                            <span>ΣΤΟΙΧΕΙΑ ΓΟΝΕΩΝ</span>
+                        </div>
                     </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-11 serif-font">
-                        <hr>
-                        <p class="h5 font-weight-bold">ΛΟΙΠΑ ΣΤΟΙΧΕΙΑ</p>
+                    <div class="row justify-content-center">
+                        <div class="col-md-11 col-sm-8 col-12">
+                            <div class="row justify-content-center">
+                                <div class="small font-weight-bolder pb-1 col-6">ΟΝΟΜΑ ΠΑΤΕΡΑ</div><div class="small col-6">{{user?.fatherfirstname}}</div>
+                                <div class="small font-weight-bolder pb-1 col-6">ΕΠΙΘΕΤΟ ΠΑΤΕΡΑ</div><div class="small col-6">{{user?.fartherlastname}}</div>
+                                <div class="small font-weight-bolder pb-1 col-6">ΟΝΟΜΑ ΜΗΤΕΡΑΣ</div><div class="small col-6">{{user?.motherfirstname}}</div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-md-6 col-12 h5 justify-content-center">
-                        <table class="m-2" style="width: 100%">
-                            <tr>
-                                <td class="text-dark font-weight-bold" style="width: 50%">ΔΙΕΥΘΥΝΣΗ: </td>
-                                <td style="width: 50%" class="text-secondary">ΡΟΔΙΤΣΑΣ 23</td>
-                            </tr>
-                            <tr>
-                                <td class="text-dark font-weight-bold" style="width: 50%">ΠΟΛΗ: </td>
-                                <td style="width: 50%" class="text-secondary">ΛΑΜΙΑ</td>
-                            </tr>
-                            <tr>
-                                <td class="text-dark font-weight-bold" style="width: 50%">ΤΚ: </td>
-                                <td style="width: 50%" class="text-secondary">35100</td>
-                            </tr>
-                            <tr>
-                                <td class="text-dark font-weight-bold" style="width: 50%">ΤΗΛΕΦΩΝΟ 1ο</td>
-                                <td style="width: 50%" class="text-secondary">2231012356</td>
-                            </tr>
-                            <tr>
-                                <td class="text-dark font-weight-bold" style="width: 50%">ΤΗΛΕΦΩΝΟ 2ο</td>
-                                <td style="width: 50%" class="text-secondary">6946453489</td>
-                            </tr>
-                            <tr>
-                                <td class="text-dark font-weight-bold" style="width: 50%">Email</td>
-                                <td style="width: 50%" class="text-secondary">aa@aa.com</td>
-                            </tr>
-                        </table>
+                    <hr>
+                    <div class="row justify-content-center">
+                        <div class="col-md-11 col-12 mb-2 serif-font">
+                            <span>ΣΤΟΙΧΕΙΑ ΚΑΤΟΙΚΙΑΣ</span>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-11 col-sm-8 col-12">
+                            <div class="row justify-content-center">
+                                <div class="small font-weight-bolder pb-1 col-6">ΔΙΕΥΘΥΝΣΗ</div><div class="small col-6">{{user?.address}}</div>
+                                <div class="small font-weight-bolder pb-1 col-6">ΠΟΛΗ</div><div class="small col-6">{{user?.city}}</div>
+                                <div class="small font-weight-bolder pb-1 col-6">ΤΚ</div><div class="small col-6">{{user?.zipcode}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row justify-content-center">
+                        <div class="col-md-11 col-12 mb-2 serif-font">
+                            <span>ΣΤΟΙΧΕΙΑ ΕΠΙΚΟΙΝΩΝΙΑΣ</span>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-11 col-sm-8 col-12">
+                            <div class="row justify-content-center">
+                                <div class="small font-weight-bolder pb-1 col-6">ΤΗΛΕΦΩΝΟ 1ο</div><div class="small col-6">{{user?.phone1}}</div>
+                                <div class="small font-weight-bolder pb-1 col-6">ΤΗΛΕΦΩΝΟ 2ο</div><div class="small col-6">{{user?.phone2}}</div>
+                                <div class="small font-weight-bolder pb-1 col-6">Email</div><div class="small col-6">{{user?.email}}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-2 col-12">
-        <div class="card">
-            <div class="card-body">
-                <button type="button" class="btn btn-outline-primary btn-block mb-75" rippleEffect>
-                    Λήψη Εγγράφου
-                    <i [data-feather]="'download'"></i>
-                </button>
-                <button type="button" class="btn btn-outline-primary btn-block mb-75" rippleEffect>
-                    Εκτύπωση Εγγράφου
-                    <i [data-feather]="'printer'"></i>
-                </button>
+        <div class="col-md-2 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <!--<button type="button" class="btn btn-outline-primary btn-block mb-75" rippleEffect>
+                        Λήψη Εγγράφου
+                        <i [data-feather]="'download'"></i>
+                    </button>-->
+                    <button type="button" class="btn btn-primary btn-block mb-75" [useExistingCss]="true"
+                            styleSheetFile="node_modules/bootstrap/dist/css/bootstrap.min.css"
+                            printSectionId="print-section" ngxPrint>
+                        Εκτύπωση Εγγράφου
+                        <i [data-feather]="'printer'"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 
 
 

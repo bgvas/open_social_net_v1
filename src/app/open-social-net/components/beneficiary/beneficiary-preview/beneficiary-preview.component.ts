@@ -24,15 +24,14 @@ export class BeneficiaryPreviewComponent implements OnInit {
   constructor(private fb: FormBuilder, private toaster: ToastrService, private beneficiaryService: BeneficiaryService,
               private router: Router, private activatedRoute: ActivatedRoute) {
     this.id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
-    this.preview_beneficiary(this.id);
   }
 
   ngOnInit(): void {
-
-    this.wizardStepper = new Stepper(document.querySelector('#stepper3'), {
+    this.wizardStepper = new Stepper(document.querySelector('#beneficiaryPreviewStepper'), {
       linear: false,
       animation: true
     });
+    this.preview_beneficiary(this.id);
   }
 
   ngOnDestroy() {
@@ -42,6 +41,7 @@ export class BeneficiaryPreviewComponent implements OnInit {
   preview_beneficiary(id: number) {
     this.isLoading = true;
     this.beneficiaryService.getById(id).pipe(take(1)).subscribe(result => {
+      console.log(result)
           this.user = result;
           this.isLoading = false;
         },
@@ -51,7 +51,6 @@ export class BeneficiaryPreviewComponent implements OnInit {
           history.back();
         })
   }
-
 
 
 

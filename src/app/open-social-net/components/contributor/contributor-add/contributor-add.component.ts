@@ -5,6 +5,7 @@ import {BeneficiaryService} from "../../../services/beneficiary.service";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {take} from "rxjs/operators";
+import {ContributorService} from "../../../services/contributor.service";
 
 @Component({
   selector: 'app-contributor-add',
@@ -17,7 +18,7 @@ export class ContributorAddComponent implements OnInit {
   wizardStepper: Stepper;
   date = new Date();
 
-  constructor(private fb: FormBuilder, private beneficiaryService: BeneficiaryService, private router: Router, private toaster: ToastrService) {  }
+  constructor(private fb: FormBuilder, private contributorService: ContributorService, private router: Router, private toaster: ToastrService) {  }
 
   ngOnInit(): void {
 
@@ -30,37 +31,27 @@ export class ContributorAddComponent implements OnInit {
 
   initializeForm(): void {
     this.addContributorForm = this.fb.group({
-      'afm': this.fb.control('', [Validators.minLength(9), Validators.maxLength(9)]),
-      'amka': this.fb.control('', [Validators.required]),
-      'adtorpassport': this.fb.control('', [Validators.required, Validators.maxLength(20)]),
-      'nationality': this.fb.control('', [Validators.required]),
-      'firstname': this.fb.control('', Validators.required),
-      'lastname': this.fb.control('', Validators.required),
-      'fartherlastname': this.fb.control('', Validators.required),
-      'fatherfirstname': this.fb.control('', Validators.required),
-      'motherfirstname': this.fb.control('', Validators.required),
-      'birthyear': this.fb.control('', [Validators.required, Validators.minLength(4), Validators.maxLength(4)]),
-      'sex': this.fb.control('', Validators.required),
+      'afm': this.fb.control('', [Validators.required, Validators.minLength(9), Validators.maxLength(9)]),
+      'brandname': this.fb.control('', [Validators.required]),
+      'name': this.fb.control('', Validators.required),
       'address': this.fb.control('', Validators.required),
       'city': this.fb.control('', Validators.required),
-      'zipcode': this.fb.control('', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]),
+      'adt': this.fb.control('', [Validators.required]),
       'phone1': this.fb.control('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
       'phone2': this.fb.control('', [Validators.minLength(10), Validators.maxLength(10)]),
       'email': this.fb.control('', [Validators.email]),
-      'enabled': this.fb.control('true', Validators.required)
+      'enabled': this.fb.control('true', Validators.required),
+      'comments': this.fb.control(''),
+      'representative': this.fb.control('', Validators.required),
     })
   }
 
   onSubmit() {
-    /*if (this.beneficiaryForm.invalid) {
-      this.beneficiaryForm.markAllAsTouched();
-      return;
-    }*/
-    this.beneficiaryService.create(this.addContributorForm.value).pipe(take(1)).subscribe(newBeneficiary => {
-          this.toaster.success('Ολοκληρώθηκε επιτυχώς', 'Προσθήκη νέου Οφελούμενου')
+    this.contributorService.create(this.addContributorForm.value).pipe(take(1)).subscribe(newBeneficiary => {
+          this.toaster.success('Ολοκληρώθηκε επιτυχώς', 'Προσθήκη νέου Παρόχου')
         },
         error => {
-          this.toaster.error('Απέτυχε!!!', 'Προσθήκη νέου Οφελούμενου')
+          this.toaster.error('Απέτυχε!!!', 'Προσθήκη νέου Παρόχου')
           console.log(error?.errormessage);
         })
     history.back();
@@ -72,14 +63,6 @@ export class ContributorAddComponent implements OnInit {
 
   wizardPrevious() {
     this.wizardStepper.previous();
-  }
-
-  years(): number[] {
-    const yearsArray = [];
-    for(let i = this.date.getFullYear(); i >= this.date.getFullYear() - 100; i--) {
-      yearsArray.push(i);
-    }
-    return yearsArray;
   }
 
 

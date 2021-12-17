@@ -1,13 +1,10 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BeneficiaryService} from "../../../services/beneficiary.service";
 import {BeneficiaryModel} from "../../../models/beneficiary-model";
-import {map, mergeMap, take, takeUntil, timeInterval} from "rxjs/operators";
-import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {take, takeUntil} from "rxjs/operators";
+import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
-import {DatatableComponent} from "@swimlane/ngx-datatable";
-import {concat, defer, EMPTY, from, interval, Subject} from "rxjs";
-import {TodoService} from "../../../../main/apps/todo/todo.service";
-import {AppService} from "../../../../app.service";
+import {Subject} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 
 @Component({
@@ -90,18 +87,15 @@ export class BeneficiaryListComponent implements OnInit, OnDestroy {
      this.matchingResults = this.beneficiaries
     }
 
-    // filter our data
-    const temp = this.matchingResults.filter(function (results) {
+    // convert data to upperCase //
+    this.matchingResults = this.matchingResults.filter(function (results) {
       return results.lastname.toUpperCase().indexOf(val) !== -1 || !val;
     });
-
-    this.matchingResults = temp;
   }
 
   delete(confirmed, id){
     if(confirmed) {
       this.beneficiaryService.delete(id).pipe(take(1)).subscribe(deleted => {
-        console.log(deleted)
         this.toaster.success('διαγράφηκε επιτυχώς.','Λογαριασμός Οφελούμενου')
         this.loadList();
       },
