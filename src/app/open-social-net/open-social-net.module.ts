@@ -17,10 +17,6 @@ import { SupplierListComponent } from './components/supplier/supplier-list/suppl
 import { SupplierAddComponent } from './components/supplier/supplier-add/supplier-add.component';
 import { SupplierEditComponent } from './components/supplier/supplier-edit/supplier-edit.component';
 import { SupplierPreviewComponent } from './components/supplier/supplier-preview/supplier-preview.component';
-import { ContributorPreviewComponent } from './components/contributor/contributor-preview/contributor-preview.component';
-import { ContributorEditComponent } from './components/contributor/contributor-edit/contributor-edit.component';
-import { ContributorAddComponent } from './components/contributor/contributor-add/contributor-add.component';
-import { ContributorListComponent } from './components/contributor/contributor-list/contributor-list.component';
 import {IMaskModule} from "angular-imask";
 import {CardSnippetModule} from "../../@core/components/card-snippet/card-snippet.module";
 import {CsvModule} from "@ctrl/ngx-csv";
@@ -50,12 +46,11 @@ const routes: Routes = [
     ] },
 
   // Χορηγοί //
-  { path: 'contributor', children: [
-      { path: 'list', component: ContributorListComponent},
-      { path: 'add', component: ContributorAddComponent},
-      { path: 'edit', component: ContributorEditComponent},
-      { path: 'preview', component: ContributorEditComponent}
-    ] },
+    {
+        path: 'contributor',
+        loadChildren: () => import('./components/contributor/contributor.module').then(m => m.ContributorModule),
+        canActivate: [AuthGuard]
+    },
 
   // Προμηθευτές //
   { path: 'supplier', children: [
@@ -80,10 +75,6 @@ const routes: Routes = [
         SupplierAddComponent,
         SupplierEditComponent,
         SupplierPreviewComponent,
-        ContributorPreviewComponent,
-        ContributorEditComponent,
-        ContributorAddComponent,
-        ContributorListComponent
     ],
     exports: [
     ],

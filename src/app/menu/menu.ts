@@ -66,7 +66,7 @@ export const menu: CoreMenu[] = [
         role: ['User'],
         url: 'app/beneficiary/needs/' + (JSON.parse(localStorage.getItem('currentUser')))?.id
       },
-      {
+     /* {
         id: 'benefactor',
         title: 'Δωρητές',
         translate: 'MENU.APP.BENEFACTOR.COLLAPSIBLE',
@@ -101,7 +101,7 @@ export const menu: CoreMenu[] = [
             url: 'app/benefactor/preview' + (JSON.parse(localStorage.getItem('currentUser')))?.id
           },
         ]
-      },
+      },*/
       {
         id: 'contributor',
         title: 'Χορηγοί',
@@ -138,7 +138,7 @@ export const menu: CoreMenu[] = [
           }
         ]
       },
-      {
+    /*  {
         id: 'supplier',
         title: 'Προμηθευτές',
         translate: 'MENU.APP.SUPPLIER.COLLAPSIBLE',
@@ -173,7 +173,7 @@ export const menu: CoreMenu[] = [
             url: 'app/supplier/preview' + (JSON.parse(localStorage.getItem('currentUser')))?.id
           }
         ]
-      }
+      }*/
     ]
   }
 ];

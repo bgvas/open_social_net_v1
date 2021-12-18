@@ -9,7 +9,7 @@ export class ProviderModel {
     public phone1: string;
     public phone2: string;
     public email: string;
-    public represantative: string;
+    public representative: string;
     public name: string;
     public adt: string;
     public comments: string;

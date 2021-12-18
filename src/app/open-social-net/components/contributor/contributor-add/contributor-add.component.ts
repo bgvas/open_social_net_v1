@@ -47,6 +47,7 @@ export class ContributorAddComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.addContributorForm.value)
     this.contributorService.create(this.addContributorForm.value).pipe(take(1)).subscribe(newBeneficiary => {
           this.toaster.success('Ολοκληρώθηκε επιτυχώς', 'Προσθήκη νέου Παρόχου')
         },

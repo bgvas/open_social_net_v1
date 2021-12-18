@@ -19,7 +19,7 @@ export class BeneficiaryEditComponent implements OnInit, OnDestroy {
   beneficiaryForm: FormGroup;
   wizardStepper: Stepper;
   date = new Date();
-  user = new BeneficiaryModel();
+  user: BeneficiaryModel;
   isLoading = false;
   id = 0;
 

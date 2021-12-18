@@ -1,1 +1,128 @@
-<p>contributor-list works!</p>
+<div class="content-wrapper container-lg p-0">
+    <div class="content-body">
+        <ng-container>
+            <div class="content-header row justify-content-center">
+                <div class="content-header-left col-md-9 col-12 mb-2">
+                    <div class="row">
+                        <div class="col-12 d-flex">
+                            <h2 class="content-header-title float-left mb-0">
+                                Λίστα Παρόχων
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <!-- Table Basic -->
+        <div class="row justify-content-center" id="basic-table">
+            <div class="col-md-9 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-text">
+                            <div class="row justify-content-center">
+                                <div class="col-md-9 col-12">
+                                    <button class="btn btn-primary ml-2" routerLink="/app/contributor/add" rippleEffect>Προσθήκη Παρόχου</button>
+                                </div>
+                                <div class="col-md-3 col-12">
+                                    <label class="d-flex align-items-center">
+                                        Αναζήτηση
+                                        <input
+                                                type="search"
+                                                placeholder="Αναζήτηση"
+                                                class="form-control text-uppercase ml-25"
+                                                (keyup)="filterUpdate($event)"
+                                                (search)="filterUpdate($event)">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Επωνυμια</th>
+                                    <th>ΑΦΜ</th>
+                                    <th>Εκπροσωπος</th>
+                                    <th>Ενεργος</th>
+                                    <th>Ενεργειες</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let contributor of matchingResults | slice: (current_page - 1) * 10 : current_page * 10;
+                                            let x = index" [ngClass]="{'text-disabled': !contributor?.enabled}">
+                                    <td>
+                                        <span class="font-weight-bold">{{contributor?.brandname}}</span>
+                                    </td>
+                                    <td>
+                                        <span class="font-weight-bold">{{contributor?.afm}}</span>
+                                    </td>
+                                    <td>
+                                        <span class="font-weight-bold">{{contributor?.representative}}</span>
+                                    </td>
+                                    <td>
+                                        <form [formGroup]="listForm">
+                                            <div class="custom-control custom-switch" formArrayName="listArray">
+                                                <div [formGroupName]="x">
+                                                    <input type="checkbox" class="custom-control-input" id="switch{{x}}" (change)="onChange($event, x, contributor?.recid)" formControlName="enabled">
+                                                    <label class="custom-control-label" for="switch{{x}}">
+                                                        <span class="switch-icon-left"><i data-feather="check"></i></span>
+                                                        <span class="switch-icon-right"><i data-feather="x"></i></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </td>
+                                    <td class="overflow-hidden">
+                                        <div ngbDropdown container="body">
+                                            <button type="button" class="btn btn-sm hide-arrow" ngbDropdownToggle data-toggle="dropdown">
+                                                <i [data-feather]="'more-horizontal'"></i>
+                                            </button>
+                                            <div ngbDropdownMenu>
+                                                <a ngbDropdownItem [routerLink]="['/app/contributor/preview', contributor?.recid]">
+                                                    <i data-feather="file-text" class="mr-50"></i>
+                                                    <span>Προβολή</span>
+                                                </a>
+                                                <a ngbDropdownItem [routerLink]="['/app/contributor/edit', contributor?.recid]">
+                                                    <i data-feather="edit" class="mr-50"></i>
+                                                    <span>Επεξεργασία</span>
+                                                </a>
+                                                <app-alert-delete-modal
+                                                        [typeOfUser]="'Παρόχου'"
+                                                        (confirm)="delete($event, contributor?.recid)">
+                                                </app-alert-delete-modal>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr *ngIf = "matchingResults?.length === 0">
+                                    <span class="p-4 text-warning">δεν βρέθηκαν αποτελέσματα</span>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <ngb-pagination [collectionSize]="matchingResults?.length" [(page)] = 'current_page' ></ngb-pagination>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <ng-container  *ngIf="isLoading">
+                                        <p class="text-center">Περιμένετε.....</p>
+                                        <div class="row justify-content-center">
+                                            <div class="spinner-border mr-50" style="width: 3rem; height: 3rem" role="status"></div>
+                                        </div>
+                                    </ng-container>
+                                </td>
+                                <td></td>
+                                <td>
+                                    Σύνολο εγγραφών: {{matchingResults?.length}}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
