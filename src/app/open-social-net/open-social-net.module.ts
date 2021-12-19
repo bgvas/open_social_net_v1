@@ -60,9 +60,6 @@ const routes: Routes = [
       { path: 'preview', component: SupplierEditComponent}
     ] },
 
-
-
-  //{ path: ':benefactor/preview', component: BeneficiaryEditComponent, data: { animation: 'BenefactorPreviewComponent' } }
 ];
 
 @NgModule({

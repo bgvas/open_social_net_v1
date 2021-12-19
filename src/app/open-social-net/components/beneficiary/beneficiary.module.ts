@@ -8,13 +8,17 @@ import {BeneficiaryPreviewComponent} from "./beneficiary-preview/beneficiary-pre
 import {BeneficiaryDeleteComponent} from "./beneficiary-delete/beneficiary-delete.component";
 import {CoreDirectivesModule} from "../../../../@core/directives/directives";
 import {NgbModule, NgbPaginationModule} from "@ng-bootstrap/ng-bootstrap";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {IMaskModule} from "angular-imask";
 import {BeneficiaryService} from "../../services/beneficiary.service";
 import {SharedModule} from "../../shared/shared.module";
 import { BeneficiaryNeedsComponent } from './beneficiary-needs/beneficiary-needs.component';
 import { BeneficiaryDocumentComponent } from './beneficiary-document/beneficiary-document.component';
 import {NgxPrintModule} from "ngx-print";
+import {CardSnippetModule} from "../../../../@core/components/card-snippet/card-snippet.module";
+import {ContentHeaderModule} from "../../../layout/components/content-header/content-header.module";
+import {NgSelectModule} from "@ng-select/ng-select";
+import {TextareaModule} from "../../../main/forms/form-elements/textarea/textarea.module";
 
 
 
@@ -50,7 +54,12 @@ const routes: Routes = [
         IMaskModule,
         NgbModule,
         SharedModule,
-        NgxPrintModule
+        NgxPrintModule,
+        CardSnippetModule,
+        ContentHeaderModule,
+        FormsModule,
+        NgSelectModule,
+        TextareaModule
     ],
 
     providers: [

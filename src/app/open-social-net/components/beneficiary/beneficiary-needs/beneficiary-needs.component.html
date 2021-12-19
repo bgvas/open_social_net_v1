@@ -1,1 +1,82 @@
-<p>beneficiary-needs works!</p>
+<ng-container>
+    <div class="content-header">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <h2 class="content-header-title mb-0">
+                    Λίστα Αναγκών
+                </h2>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+
+<section class="form-control-repeater">
+    <div class="row justify-content-center">
+        <!-- Invoice repeater -->
+        <div class="col-md-9 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <button class="btn btn-icon btn-primary" type="button" (click)="addItem()" rippleEffect>
+                                <i data-feather="plus" class="mr-25"></i>
+                                <span>Προσθήκη</span>
+                            </button>
+                        </div>
+                    </div>
+                    <form class="invoice-repeater">
+                        <div *ngFor="let item of needs; let i = index">
+                            <div class="row">
+                                <div class="col-12 text-center h5 pb-1">Υπάρχει ανάγκη για</div>
+                                <div class="col-md-3 col-12">
+                                    <div class="form-group">
+                                        <select class="custom-select font-weight-bolder" id="customSelect">
+                                            <option class="text-secondary" selected>Επιλέξτε από την λίστα</option>
+                                            <option class="font-weight-bolder" *ngFor="let need of selectNeeds.map() | keyvalue" value="{{need?.key}}">
+                                                {{need?.value}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 col-12">
+                                    <div class="form-group">
+                                         <textarea class="form-control" id="comments" rows="1" placeholder="Λεπτομέρειες"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-12">
+                                    <button class="btn btn-outline-danger text-nowrap" (click)="deleteItem(i)" rippleEffect>
+                                        <i data-feather="x" class="mr-25 text-danger"></i>
+                                        <span class="text-danger">Διαγραφή</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <button type="button" class="btn btn-primary btn-block mb-75" rippleEffect>
+                        <i [data-feather]="'save'"></i>
+                        Αποθήκευση
+                    </button>
+                    <button type="button" class="btn btn-outline-primary btn-block mb-75" [useExistingCss]="true"
+                            styleSheetFile="node_modules/bootstrap/dist/css/bootstrap.min.css"
+                            printSectionId="print-section" ngxPrint>
+                        <i [data-feather]="'printer'"></i>
+                        Εκτύπωση Εγγράφου
+                    </button>
+                    <button type="reset" class="btn btn-outline-danger btn-block mb-75" rippleEffect>
+                        <i [data-feather]="'delete'"></i>
+                        Εκκαθάριση
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

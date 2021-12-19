@@ -19,7 +19,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [TextareaComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), NgbModule, ContentHeaderModule, CardSnippetModule, FormsModule]
+    declarations: [TextareaComponent],
+    exports: [
+        TextareaComponent
+    ],
+    imports: [CommonModule, RouterModule.forChild(routes), NgbModule, ContentHeaderModule, CardSnippetModule, FormsModule]
 })
 export class TextareaModule {}

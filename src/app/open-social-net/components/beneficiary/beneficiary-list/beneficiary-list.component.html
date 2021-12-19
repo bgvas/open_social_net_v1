@@ -51,18 +51,18 @@
                             </thead>
                             <tbody>
                             <tr *ngFor="let beneficiary of matchingResults | slice: (current_page - 1) * 10 : current_page * 10;
-                                        let x = index" [ngClass]="{'text-disabled': !beneficiary.enabled}">
+                                        let x = index" [ngClass]="{'text-disabled': !beneficiary.enabled, 'bg-lightGrey': x % 2 !== 0}">
                                 <td>
-                                    <span class="font-weight-bold">{{beneficiary?.lastname}} {{beneficiary?.firstname}}</span>
+                                    <span>{{beneficiary?.lastname}} {{beneficiary?.firstname}}</span>
                                 </td>
                                 <td>
-                                    <span class="font-weight-bold">{{beneficiary?.fatherfirstname}}</span>
+                                    <span>{{beneficiary?.fatherfirstname}}</span>
                                 </td>
                                 <td>
-                                    <span class="font-weight-bold">{{beneficiary?.amka}}</span>
+                                    <span>{{beneficiary?.amka}}</span>
                                 </td>
                                 <td>
-                                    <span class="font-weight-bold">{{beneficiary?.nationality}}</span>
+                                    <span>{{beneficiary?.nationality}}</span>
                                 </td>
                                 <td>
                                     <form [formGroup]="listForm">

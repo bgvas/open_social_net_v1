@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Needs} from "../../../shared/needs";
+
 
 @Component({
   selector: 'app-beneficiary-needs',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BeneficiaryNeedsComponent implements OnInit {
 
-  constructor() { }
+  needs = new Array<string>();
+  selectNeeds = new Needs();
+  constructor() {}
+
+  /**
+   * Add Item
+   */
+  addItem() {
+    this.needs.push('')
+  }
+
+  /**
+   * DeleteItem
+   *
+   * @param id
+   */
+  deleteItem(id) {
+    this.needs.splice(id, 1)
+  }
 
   ngOnInit(): void {
   }
-
 }

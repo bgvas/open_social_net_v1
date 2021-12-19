@@ -45,7 +45,6 @@ export const menu: CoreMenu[] = [
             icon: 'circle',
             url: 'app/beneficiary/add'
           },
-
         ]
       },
       {
@@ -63,7 +62,7 @@ export const menu: CoreMenu[] = [
         translate: 'MENU.APP.BENEFICIARY.NEEDS',
         type: 'item',
         icon: 'list',
-        role: ['User'],
+        role: ['User', 'Admin'],
         url: 'app/beneficiary/needs/' + (JSON.parse(localStorage.getItem('currentUser')))?.id
       },
      /* {
@@ -104,7 +103,7 @@ export const menu: CoreMenu[] = [
       },*/
       {
         id: 'contributor',
-        title: 'Χορηγοί',
+        title: 'Πάροχοι',
         translate: 'MENU.APP.CONTRIBUTOR.COLLAPSIBLE',
         type: 'collapsible',
         icon: 'dollar-sign',

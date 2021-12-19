@@ -24,7 +24,7 @@ export const locale = {
           }
         },
         CONTRIBUTOR: {
-          COLLAPSIBLE: 'Χορηγοί',
+          COLLAPSIBLE: 'Πάροχοι',
           REGISTER: {
             LIST: 'Λίστα',
             ADD: 'Προσθήκη',
