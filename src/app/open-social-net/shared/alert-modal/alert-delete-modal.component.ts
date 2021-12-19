@@ -10,7 +10,6 @@ export class AlertDeleteModalComponent implements OnInit {
 
 
   @Input() typeOfUser: any;
-  @Input() class?: any | '';
   @Output() confirm = new EventEmitter<any>();
   constructor(private modalService: NgbModal) { }
 

@@ -51,18 +51,4 @@ export class ContributorPreviewComponent implements OnInit {
         })
   }
 
-  delete(confirmed, id) {
-    if(confirmed) {
-      this.contributorService.delete(id).pipe(take(1)).subscribe(deleted => {
-          this.toaster.success('διαγράφηκε επιτυχώς.','Λογαριασμός Παρόχου')
-          history.back()
-        },
-        error => {
-          history.back()
-          console.log(error?.errormessage)
-          this.toaster.error('H διαγραφή απέτυχε.','Λογαριασμός Παρόχου')
-        })
-    }
-  }
-
 }
