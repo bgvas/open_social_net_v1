@@ -14,277 +14,293 @@
 
 
 <section class="vertical-wizard">
-    <div id="contributorPreviewStepper" class="bs-stepper vertical vertical-wizard-example">
+    <div class="row">
+        <div class="col-md-9 col-12">
+            <div id="contributorPreviewStepper" class="bs-stepper vertical vertical-wizard-example">
+                <!-- Tabs -->
+                <div class="bs-stepper-header" >
 
-        <!-- Tabs -->
-        <div class="bs-stepper-header" >
-
-            <div class="step" data-target="#contributor-basics">
-                <button type="button" class="step-trigger">
-                    <span class="bs-stepper-box">1</span>
-                    <span class="bs-stepper-label">
+                    <div class="step" data-target="#contributor-basics">
+                        <button type="button" class="step-trigger">
+                            <span class="bs-stepper-box">1</span>
+                            <span class="bs-stepper-label">
                         <span class="bs-stepper-title">Στοιχεία Παρόχου</span>
                         <span class="bs-stepper-subtitle">Τα βασικά στοιχεία του Παρόχου</span>
                     </span>
-                </button>
-            </div>
+                        </button>
+                    </div>
 
-            <div class="step" data-target="#contributor-representative">
-                <button type="button" class="step-trigger">
-                    <span class="bs-stepper-box">2</span>
-                    <span class="bs-stepper-label">
+                    <div class="step" data-target="#contributor-representative">
+                        <button type="button" class="step-trigger">
+                            <span class="bs-stepper-box">2</span>
+                            <span class="bs-stepper-label">
                         <span class="bs-stepper-title">Στοιχεία Εκπροσώπου</span>
                         <span class="bs-stepper-subtitle">Τα στοιχεία Εκπροσώπου του Παρόχου</span>
                     </span>
-                </button>
-            </div>
+                        </button>
+                    </div>
 
-            <div class="step" data-target="#address-info">
-                <button type="button" class="step-trigger">
-                    <span class="bs-stepper-box">3</span>
-                    <span class="bs-stepper-label">
+                    <div class="step" data-target="#address-info">
+                        <button type="button" class="step-trigger">
+                            <span class="bs-stepper-box">3</span>
+                            <span class="bs-stepper-label">
                         <span class="bs-stepper-title">Στοιχεία Διεύθυνσης</span>
                         <span class="bs-stepper-subtitle">Στοιχεία σχετικά με την διεύθυνση</span>
                     </span>
-                </button>
-            </div>
+                        </button>
+                    </div>
 
-            <div class="step" data-target="#contact-info">
-                <button type="button" class="step-trigger">
-                    <span class="bs-stepper-box">4</span>
-                    <span class="bs-stepper-label">
+                    <div class="step" data-target="#contact-info">
+                        <button type="button" class="step-trigger">
+                            <span class="bs-stepper-box">4</span>
+                            <span class="bs-stepper-label">
                         <span class="bs-stepper-title">Στοιχεία Επικοινωνίας</span>
                         <span class="bs-stepper-subtitle">Τρόποι επικοινωνίας</span>
                     </span>
-                </button>
-            </div>
+                        </button>
+                    </div>
 
-            <div class="step" data-target="#general-info">
-                <button type="button" class="step-trigger">
-                    <span class="bs-stepper-box">5</span>
-                    <span class="bs-stepper-label">
+                    <div class="step" data-target="#general-info">
+                        <button type="button" class="step-trigger">
+                            <span class="bs-stepper-box">5</span>
+                            <span class="bs-stepper-label">
                         <span class="bs-stepper-title">Λοιπά Στοιχεία</span>
                         <span class="bs-stepper-subtitle">Λοιπά Στοιχεία</span>
                     </span>
-                </button>
-            </div>
-
-        </div>
-
-        <!-- Πεδία -->
-        <div class="bs-stepper-content" >
-
-            <div class="form form-vertical">
-
-                <div id="contributor-basics" class="content">
-                    <div class="content-header">
-                        <h5 class="mb-0">Στοιχεία Παρόχου</h5>
-                        <small class="text-muted">Τα βασικά στοιχεία του Παρόχου</small>
+                        </button>
                     </div>
 
-                    <!-- Βασικά στοιχεία -->
-                    <div class="row justify-content-center">
-                        <div class="form-group col-md-10 col-12">
-                            <label class="form-label" for="brandname">Επωνυμία</label>
-                            <input
-                                type="text"
-                                id="brandname"
-                                class="form-control text-uppercase"
-                                name="brandname"
-                                disabled
-                                [value]="user?.brandname">
-                        </div>
-                        <div class="form-group col-md-10 col-12">
-                            <label class="form-label" for="name">Επωνυμία</label>
-                            <input
-                                type="text"
-                                id="name"
-                                class="form-control text-uppercase"
-                                name="name"
-                                disabled
-                                [value]="user?.name">
-                        </div>
-                        <div class="form-group col-md-10 col-12">
-                            <label class="form-label" for="afm">Α.Φ.Μ.</label>
-                            <input
-                                type="number"
-                                id="afm"
-                                class="form-control"
-                                name="afm"
-                                disabled
-                                [value]="user?.afm">
-                        </div>
-                    </div>
                 </div>
 
-                <div id="contributor-representative" class="content">
-                    <div class="content-header">
-                        <h5 class="mb-0">Στοιχεία Εκπροσώπου</h5>
-                        <small class="text-muted">Τα στοιχεία Εκπροσώπου του Παρόχου.</small>
-                    </div>
-                    <div class="row justify-content-center">
-                        <div class="col-md-10 col-12">
-                            <div class="form-group">
-                                <label for="representative">Ονοματεπώνυμο</label>
-                                <div class="input-group input-group-merge">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><span [data-feather]="'user'"></span></span>
-                                    </div>
-                                    <input
-                                        type="text"
-                                        id="representative"
-                                        class="form-control text-uppercase"
-                                        name="representative"
-                                        disabled
-                                        [value]="user?.representative">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-10 col-12">
-                            <div class="form-group">
-                                <label for="adt">Αριθμός Ταυτότητας</label>
-                                <div class="input-group input-group-merge">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><span [data-feather]="'user'"></span></span>
-                                    </div>
-                                    <input
-                                        type="text"
-                                        id="adt"
-                                        class="form-control text-uppercase"
-                                        name="adt"
-                                        disabled
-                                        [value]="user?.adt">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Πεδία -->
+                <div class="bs-stepper-content" >
 
-                <div id="address-info" class="content">
-                    <div class="content-header">
-                        <h5 class="mb-0">Στοιχεία Διεύθυνσης</h5>
-                        <small class="text-muted">Στοιχεία σχετικά με διεύθυνση</small>
-                    </div>
-                    <div class="row justify-content-center">
-                        <div class="col-md-10 col-12">
-                            <div class="form-group">
-                                <label for="address-icon">Διεύθυνση</label>
-                                <div class="input-group input-group-merge">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><span [data-feather]="'compass'"></span></span>
-                                    </div>
-                                    <input
-                                        type="text"
-                                        id="address-icon"
-                                        class="form-control text-uppercase"
-                                        name="address-icon"
-                                        disabled
-                                        [value]="user?.address">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-10 col-12">
-                            <div class="form-group">
-                                <label for="city-icon">Πόλη</label>
-                                <div class="input-group input-group-merge">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><span [data-feather]="'map-pin'"></span></span>
-                                    </div>
-                                    <input
-                                        type="text"
-                                        id="city-icon"
-                                        class="form-control text-uppercase"
-                                        name="city-icon"
-                                        disabled
-                                        [value]="user?.city">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <div class="form form-vertical">
 
-                <div id="contact-info" class="content">
-                    <div class="content-header">
-                        <h5 class="mb-0">Στοιχεία Επικοινωνίας</h5>
-                        <small class="text-muted">Τρόποι επικοινωνίας</small>
-                    </div>
-                    <div class="row justify-content-center">
-                        <div class="col-md-10 col-12">
-                            <div class="form-group">
-                                <label for="email-id-icon">Email</label>
-                                <div class="input-group input-group-merge">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><span [data-feather]="'mail'"></span></span>
-                                    </div>
-                                    <input
-                                        type="email"
-                                        id="email-id-icon"
-                                        class="form-control"
-                                        name="email-id-icon"
-                                        disabled
-                                        [value]="user?.email">
-                                </div>
+                        <div id="contributor-basics" class="content">
+                            <div class="content-header">
+                                <h5 class="mb-0">Στοιχεία Παρόχου</h5>
+                                <small class="text-muted">Τα βασικά στοιχεία του Παρόχου</small>
                             </div>
-                        </div>
-                        <div class="col-md-10 col-12">
-                            <div class="form-group">
-                                <label for="phone1-icon">Τηλέφωνο-1</label>
-                                <div class="input-group input-group-merge">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><span [data-feather]="'phone'"></span></span>
-                                    </div>
-                                    <input
-                                        type="number"
-                                        id="phone1-icon"
-                                        class="form-control"
-                                        name="phone1-icon"
-                                        disabled
-                                        [value]="user?.phone1">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-10 col-12">
-                            <div class="form-group">
-                                <label for="phone2-icon">Τηλέφωνο-2</label>
-                                <div class="input-group input-group-merge">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><span [data-feather]="'phone'"></span></span>
-                                    </div>
-                                    <input
-                                        type="number"
-                                        id="phone2-icon"
-                                        class="form-control"
-                                        name="phone2-icon"
-                                        disabled
-                                        [value]="user?.phone2">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div id="general-info" class="content">
-                    <div class="content-header">
-                        <h5 class="mb-0">Λοιπά Στοιχεία</h5>
-                        <small class="text-muted">Λοιπά Στοιχεία.</small>
-                    </div>
-                    <div class="row justify-content-center">
-                        <div class="col-md-10 col-12">
-                            <div class="form-group">
-                                <label for="comments">Παρατηρήσεις</label>
-                                <textarea
-                                        type="text"
-                                        id="comments"
-                                        class="form-control"
-                                        disabled
-                                        rows="5"
-                                        cols="1"
-                                        [value]="user?.comments"
-                                        name="comments">
+                            <!-- Βασικά στοιχεία -->
+                            <div class="row justify-content-center">
+                                <div class="form-group col-md-10 col-12">
+                                    <label class="form-label" for="brandname">Επωνυμία Παρόχου</label>
+                                    <input
+                                            type="text"
+                                            id="brandname"
+                                            class="form-control text-uppercase"
+                                            name="brandname"
+                                            disabled
+                                            [value]="user?.brandname">
+                                </div>
+                                <div class="form-group col-md-10 col-12">
+                                    <label class="form-label" for="name">Λογιστική Επωνυμία</label>
+                                    <input
+                                            type="text"
+                                            id="name"
+                                            class="form-control text-uppercase"
+                                            name="name"
+                                            disabled
+                                            [value]="user?.name">
+                                </div>
+                                <div class="form-group col-md-10 col-12">
+                                    <label class="form-label" for="afm">Α.Φ.Μ.</label>
+                                    <input
+                                            type="number"
+                                            id="afm"
+                                            class="form-control"
+                                            name="afm"
+                                            disabled
+                                            [value]="user?.afm">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="contributor-representative" class="content">
+                            <div class="content-header">
+                                <h5 class="mb-0">Στοιχεία Εκπροσώπου</h5>
+                                <small class="text-muted">Τα στοιχεία Εκπροσώπου του Παρόχου.</small>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-md-10 col-12">
+                                    <div class="form-group">
+                                        <label for="representative">Ονοματεπώνυμο</label>
+                                        <div class="input-group input-group-merge">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><span [data-feather]="'user'"></span></span>
+                                            </div>
+                                            <input
+                                                    type="text"
+                                                    id="representative"
+                                                    class="form-control text-uppercase"
+                                                    name="representative"
+                                                    disabled
+                                                    [value]="user?.representative">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-10 col-12">
+                                    <div class="form-group">
+                                        <label for="adt">Αριθμός Ταυτότητας</label>
+                                        <div class="input-group input-group-merge">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><span [data-feather]="'user'"></span></span>
+                                            </div>
+                                            <input
+                                                    type="text"
+                                                    id="adt"
+                                                    class="form-control text-uppercase"
+                                                    name="adt"
+                                                    disabled
+                                                    [value]="user?.adt">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="address-info" class="content">
+                            <div class="content-header">
+                                <h5 class="mb-0">Στοιχεία Διεύθυνσης</h5>
+                                <small class="text-muted">Στοιχεία σχετικά με διεύθυνση</small>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-md-10 col-12">
+                                    <div class="form-group">
+                                        <label for="address-icon">Διεύθυνση</label>
+                                        <div class="input-group input-group-merge">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><span [data-feather]="'compass'"></span></span>
+                                            </div>
+                                            <input
+                                                    type="text"
+                                                    id="address-icon"
+                                                    class="form-control text-uppercase"
+                                                    name="address-icon"
+                                                    disabled
+                                                    [value]="user?.address">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-10 col-12">
+                                    <div class="form-group">
+                                        <label for="city-icon">Πόλη</label>
+                                        <div class="input-group input-group-merge">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><span [data-feather]="'map-pin'"></span></span>
+                                            </div>
+                                            <input
+                                                type="text"
+                                                id="city-icon"
+                                                class="form-control text-uppercase"
+                                                name="city-icon"
+                                                disabled
+                                                [value]="user?.city">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="contact-info" class="content">
+                            <div class="content-header">
+                                <h5 class="mb-0">Στοιχεία Επικοινωνίας</h5>
+                                <small class="text-muted">Τρόποι επικοινωνίας</small>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-md-10 col-12">
+                                    <div class="form-group">
+                                        <label for="email-id-icon">Email</label>
+                                        <div class="input-group input-group-merge">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><span [data-feather]="'mail'"></span></span>
+                                            </div>
+                                            <input
+                                                    type="email"
+                                                    id="email-id-icon"
+                                                    class="form-control"
+                                                    name="email-id-icon"
+                                                    disabled
+                                                    [value]="user?.email">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-10 col-12">
+                                    <div class="form-group">
+                                        <label for="phone1-icon">Τηλέφωνο-1</label>
+                                        <div class="input-group input-group-merge">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><span [data-feather]="'phone'"></span></span>
+                                            </div>
+                                            <input
+                                                    type="number"
+                                                    id="phone1-icon"
+                                                    class="form-control"
+                                                    name="phone1-icon"
+                                                    disabled
+                                                    [value]="user?.phone1">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-10 col-12">
+                                    <div class="form-group">
+                                        <label for="phone2-icon">Τηλέφωνο-2</label>
+                                        <div class="input-group input-group-merge">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><span [data-feather]="'phone'"></span></span>
+                                            </div>
+                                            <input
+                                                    type="number"
+                                                    id="phone2-icon"
+                                                    class="form-control"
+                                                    name="phone2-icon"
+                                                    disabled
+                                                    [value]="user?.phone2">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="general-info" class="content">
+                            <div class="content-header">
+                                <h5 class="mb-0">Λοιπά Στοιχεία</h5>
+                                <small class="text-muted">Λοιπά Στοιχεία.</small>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-md-10 col-12">
+                                    <div class="form-group">
+                                        <label for="comments">Παρατηρήσεις</label>
+                                        <textarea
+                                                type="text"
+                                                id="comments"
+                                                class="form-control"
+                                                disabled
+                                                rows="5"
+                                                cols="1"
+                                                [value]="user?.comments"
+                                                name="comments">
                                 </textarea>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <button type="button" [routerLink]="['/app/contributor/edit', id]"
+                            class="btn btn-primary btn-block mb-75" rippleEffect>Επεξεργασία Παρόχου</button>
+                    <app-alert-delete-modal
+                            [typeOfUser]="'Παρόχου'"
+                            [class]="'text-center btn btn-danger'"
+                            (confirm)="delete($event, user?.recid)">
+                    </app-alert-delete-modal>
                 </div>
             </div>
         </div>
